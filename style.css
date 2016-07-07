@@ -81,10 +81,4 @@ footer {
     margin-bottom: 6rem;
 
     text-align: center;
-
-    opacity: .5;
-}
-
-footer:hover {
-    opacity: 1;
 }
