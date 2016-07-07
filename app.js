@@ -10,9 +10,8 @@ SC.connect()
     .then(function(session) {
       token = session.oauth_token;
 
-      $('[data-hide="after-auth"]').slideUp(500, function() {
-        $('[data-show="after-auth"]').slideDown(500);
-      });
+      $('[data-hide="after-auth"]').hide();
+      $('[data-show="after-auth"]').show();
 
       return SC.get('/me')
     })
@@ -23,8 +22,8 @@ SC.connect()
     .then(function(data) {
       var track_list = $('#tracks');
 
-      $('[data-hide="after-fetch"]').slideUp(500);
-      $('[data-show="after-fetch"]').slideDown(500);
+      $('[data-hide="after-fetch"]').hide();
+      $('[data-show="after-fetch"]').show();
 
       for(var index in data) {
         var track = data[index];
