@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^2.2.0",
+    "http-server": "^0.9.0",
+    "localtunnel": "^1.8.1"
+  },
+  "scripts": {
+    "start:server": "./node_modules/.bin/http-server .",
+    "start:lt": "./node_modules/.bin/lt --port 8080 --subdomain yoloyloyolo",
+    "start": "./node_modules/.bin/concurrently \"npm run start:server\" \"npm run start:lt\""
+  }
+}
