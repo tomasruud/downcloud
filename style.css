@@ -2,6 +2,11 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css';
 @import 'https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre|Open+Sans';
 
+::selection {
+    color: #fcfcfc;
+    background-color: #6c71c4;
+}
+
 html {
     font-size: 16px;
 }
@@ -17,6 +22,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', cursive;
+    color: #6c71c4;
 }
 
 main {
