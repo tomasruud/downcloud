@@ -48,17 +48,17 @@ button {
 
     border: 2px solid #6c71c4;
 
-    color: inherit;
+    color: #6c71c4;
     font-weight: 600;
 
     border-radius: 3px;
 }
 
 button:hover {
-    background-color: #fcfcfc;
+    background-color: #6c71c4;
     cursor: pointer;
     
-    color: #6c71c4;
+    color: #fcfcfc;
 }
 
 li {
