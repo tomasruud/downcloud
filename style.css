@@ -1,0 +1,38 @@
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css';
+@import 'https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre|Open+Sans';
+
+html {
+    font-size: 14px;
+}
+
+body {
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+
+    background-color: #fdf6e3;
+
+    color: #657b83;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Frank Ruhl Libre', cursive;
+}
+
+.container {
+    padding: 4rem;
+    margin: 1rem auto 3rem;
+
+    width: 100%;
+    max-width: 900px;
+}
+
+.notice {
+    padding: 1rem;
+    margin-bottom: 2em;
+
+    border: 2px solid #6c71c4;;
+    color: #6c71c4;;
+
+    border-radius: 3px;
+}

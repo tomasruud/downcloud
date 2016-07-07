@@ -1,46 +1,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title></title>
+  <title>Download your own tracks from Soundcloud</title>
+
+  <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <div>
+  <div class="container">
+    <div class="notice" data-hide="after-auth">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <strong>Info:</strong> Make sure you allow popups.
+    </div>
+
+    <div class="notice" data-hide="after-fetch" data-show="after-auth">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      <strong>Info:</strong> Make sure you allow popups.
+    </div>
+
+    <h1>Download you Soundcloud tracks!</h1>
+
+    <p data-hide="after-auth">Please authenticate with Soundcloud to see your tracks.</p>
+
+    <p data-show="after-fetch">Click on the track name below to download the original file.</p>
+
     <ul id="tracks">
     </ul>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
-  <script>
-    var redirect = window.location.href + 'callback.html';
-
-    SC.initialize({
-      client_id: 'c205c3e2eedb509dff1c1147765b055d',
-      redirect_uri: redirect
-    });
-
-    var token = null;
-
-    SC.connect().then(function(session) {
-      token = session.oauth_token;
-
-      return SC.get('/me')
-    }).then(function(data) {
-      var id = data.id;
-
-      return SC.get('/users/' + id + '/tracks')
-    }).then(function(data) {
-      var track_list = $('#tracks');
-
-      for(var index in data) {
-        var track = data[index];
-
-        var download_url = track.download_url;
-        var title = track.title;
-
-        track_list.append('<li><a href="' + download_url + '?oauth_token=' + token + '">' + title + '</a></li>');
-      }
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
