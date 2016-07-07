@@ -17,12 +17,12 @@ body {
 
     background-color: #fcfcfc;
 
-    color: #657b83;
+    color: #555;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', cursive;
-    color: #f50;
+    color: inherit;
 }
 
 main {
