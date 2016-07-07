@@ -4,7 +4,7 @@
 
 ::selection {
     color: #fcfcfc;
-    background-color: #6c71c4;
+    background-color: #f50;
 }
 
 html {
@@ -22,7 +22,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', cursive;
-    color: #6c71c4;
+    color: #f50;
 }
 
 main {
@@ -36,8 +36,8 @@ main {
     padding: 1rem;
     margin-bottom: 2em;
 
-    border: 2px solid #6c71c4;
-    color: #6c71c4;
+    border: 2px solid #f50;
+    color: #f50;
 
     border-radius: 3px;
 }
@@ -52,16 +52,16 @@ button {
 
     background-color: transparent;
 
-    border: 2px solid #6c71c4;
+    border: 2px solid #f50;
 
-    color: #6c71c4;
+    color: #f50;
     font-weight: 600;
 
     border-radius: 3px;
 }
 
 button:hover {
-    background-color: #6c71c4;
+    background-color: #f50;
     cursor: pointer;
     
     color: #fcfcfc;
@@ -75,7 +75,7 @@ a,
 a:link,
 a:visited,
 a:active {
-    color: #6c71c4;
+    color: #f50;
     font-weight: 600;
 
     text-decoration: none;
