@@ -12,16 +12,20 @@
       <strong>Info:</strong> Make sure you allow popups.
     </div>
 
-    <div class="notice" data-hide="after-fetch" data-show="after-auth">
+    <div class="notice hidden" data-hide="after-fetch" data-show="after-auth">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <strong>Info:</strong> Make sure you allow popups.
     </div>
 
     <h1>Download you Soundcloud tracks!</h1>
 
-    <p data-hide="after-auth">Please authenticate with Soundcloud to see your tracks.</p>
+    <p class="hidden" data-hide="after-auth">
+      Please authenticate with Soundcloud to see your tracks.
+    </p>
 
-    <p data-show="after-fetch">Click on the track name below to download the original file.</p>
+    <p class="hidden" data-show="after-fetch">
+      Click on the track name below to download the original file.
+    </p>
 
     <ul id="tracks">
     </ul>
