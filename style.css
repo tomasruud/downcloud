@@ -10,7 +10,7 @@ body {
     font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
 
-    background-color: #fdf6e3;
+    background-color: #fcfcfc;
 
     color: #657b83;
 }
@@ -30,8 +30,8 @@ main {
     padding: 1rem;
     margin-bottom: 2em;
 
-    border: 2px solid #6c71c4;;
-    color: #6c71c4;;
+    border: 2px solid #6c71c4;
+    color: #6c71c4;
 
     border-radius: 3px;
 }
@@ -46,7 +46,7 @@ button {
 
     background-color: transparent;
 
-    border: 2px solid #657b83;
+    border: 2px solid #6c71c4;
 
     color: inherit;
     font-weight: 600;
@@ -55,8 +55,10 @@ button {
 }
 
 button:hover {
-    background-color: #eee8d5;
+    background-color: #fcfcfc;
     cursor: pointer;
+    
+    color: #6c71c4;
 }
 
 li {
@@ -67,7 +69,7 @@ a,
 a:link,
 a:visited,
 a:active {
-    color: #b58900;
+    color: #6c71c4;
     font-weight: 600;
 
     text-decoration: none;
