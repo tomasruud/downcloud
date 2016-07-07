@@ -40,3 +40,22 @@ h1, h2, h3, h4, h5, h6 {
 .hidden {
     display: none;
 }
+
+button {
+    margin-top: 1rem;
+    padding: 1rem;
+
+    background-color: transparent;
+
+    border: 2px solid #657b83;
+
+    color: inherit;
+    font-weight: 600;
+
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: #eee8d5;
+    cursor: pointer;
+}
