@@ -5,9 +5,11 @@
 
   <link href="style.css" rel="stylesheet">
   <link rel="shortcut icon" href="cat.png">
+
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
 <body>
-  <div class="container">
+  <main>
     <div class="notice" data-hide="after-auth">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
       <strong>Info:</strong> Make sure you allow popups.
@@ -18,11 +20,13 @@
       <strong>Info:</strong> Fetching your data...
     </div>
 
-    <h1>Download you Soundcloud tracks!</h1>
+    <h1>Download your original Soundcloud files!</h1>
 
     <p data-hide="after-auth">
       Please authorize with Soundcloud to see your tracks.<br>
-      <button id="authorize">Click to authorize!</button>
+      <button id="authorize">
+        <i class="fa fa-sign-in" aria-hidden="true"></i> Click to authorize!
+      </button>
     </p>
 
     <p class="hidden" data-show="after-fetch">
@@ -31,7 +35,16 @@
 
     <ul id="tracks">
     </ul>
-  </div>
+  </main>
+
+  <footer>
+    <p>
+      By Tomas Ruud<br>
+      <i class="fa fa-soundcloud" aria-hidden="true"></i> <a href="https://soundcloud.com/autodrums" target="_blank">@autodrums</a><br>
+      <i class="fa fa-github" aria-hidden="true"></i> <a href="https://github.com/tomasruud" target="_blank">@tomasruud</a>
+    </p>
+    <a class="github-button" href="https://github.com/tomasruud/soundcloud-get-my-tracks">View on Github</a>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
   <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>

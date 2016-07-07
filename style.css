@@ -19,9 +19,9 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', cursive;
 }
 
-.container {
-    padding: 4rem;
-    margin: 1rem auto 3rem;
+main {
+    padding: 2rem;
+    margin: 4rem auto;
 
     max-width: 900px;
 }
@@ -61,4 +61,30 @@ button:hover {
 
 li {
     margin-bottom: .5rem;
+}
+
+a,
+a:link,
+a:visited,
+a:active {
+    color: #b58900;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-bottom: 6rem;
+
+    text-align: center;
+
+    opacity: .5;
+}
+
+footer:hover {
+    opacity: 1;
 }
