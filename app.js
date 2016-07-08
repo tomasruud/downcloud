@@ -1,4 +1,4 @@
-var redirect = window.location.href + 'callback.html';
+var redirect = 'http://downloader.soundcloud.ruud.ninja/callback.html';
 var token = null;
 
 $('#authorize').on('click', function() {
