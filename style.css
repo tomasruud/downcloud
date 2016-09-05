@@ -2,6 +2,11 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css';
 @import 'https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre|Open+Sans';
 
+::selection {
+    color: #fcfcfc;
+    background-color: #f50;
+}
+
 html {
     font-size: 16px;
 }
@@ -10,13 +15,14 @@ body {
     font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
 
-    background-color: #fdf6e3;
+    background-color: #fcfcfc;
 
-    color: #657b83;
+    color: #555;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Frank Ruhl Libre', cursive;
+    color: inherit;
 }
 
 main {
@@ -30,8 +36,8 @@ main {
     padding: 1rem;
     margin-bottom: 2em;
 
-    border: 2px solid #6c71c4;;
-    color: #6c71c4;;
+    border: 2px solid #f50;
+    color: #f50;
 
     border-radius: 3px;
 }
@@ -46,17 +52,19 @@ button {
 
     background-color: transparent;
 
-    border: 2px solid #657b83;
+    border: 2px solid #f50;
 
-    color: inherit;
+    color: #f50;
     font-weight: 600;
 
     border-radius: 3px;
 }
 
 button:hover {
-    background-color: #eee8d5;
+    background-color: #f50;
     cursor: pointer;
+    
+    color: #fcfcfc;
 }
 
 li {
@@ -67,14 +75,21 @@ a,
 a:link,
 a:visited,
 a:active {
-    color: #b58900;
+    color: #f50;
     font-weight: 600;
-
     text-decoration: none;
+    line-height: 1.1;
+    
+    border-radius: 4px;
+    
+    padding: 4px 6px;
+    
+    display: inline-block;
 }
 
 a:hover {
-    text-decoration: underline;
+   background-color: #f50;
+   color: #fcfcfc;
 }
 
 footer {
