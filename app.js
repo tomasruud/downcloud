@@ -21,7 +21,7 @@ $('#authorize').on('click', function() {
         var track_count = (data.private_tracks_count || 0) + (data.track_count || 0);
         var pages       = Math.floor(track_count / limit);
 
-        for(var page = 0; page < pages; page++) {
+        for(var page = 0; page <= pages; page++) {
           fetch_and_append(limit, page);
         }
       });
