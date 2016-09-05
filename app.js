@@ -23,6 +23,8 @@ $('#authorize').on('click', function() {
       .then(function(data) {
         var track_list = $('#tracks');
 
+        console.dir(data);
+
         $('[data-hide="after-fetch"]').hide();
         $('[data-show="after-fetch"]').show();
 
@@ -33,7 +35,7 @@ $('#authorize').on('click', function() {
           var title = track.title;
 
           var append = '<li>';
-          append += '<a href="' + download_url + '?oauth_token=' + token + '">' + title + '</a>'
+          append += '<a href="' + download_url + '?oauth_token=' + token + '">' + title + '</a>';
           append += '</li>';
 
           track_list.append(append);
