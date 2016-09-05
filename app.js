@@ -30,6 +30,8 @@ $('#authorize').on('click', function() {
 function fetch_and_append(limit, page) {
   SC.get('/me/tracks', {limit: limit, linked_partitioning: page})
       .then(function(data) {
+        data = data.collection;
+
         var track_list = $('#tracks');
 
         $('[data-hide="after-fetch"]').hide();
