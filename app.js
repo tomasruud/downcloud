@@ -16,18 +16,16 @@ $('#authorize').on('click', function() {
       .then(function(session) {
         token = session.oauth_token;
 
-        $('[data-hide="after-auth"]').hide();
-        $('[data-show="after-auth"]').show();
+        animate('after-auth');
 
         return SC.get('/me/tracks', {limit: config.limit, linked_partitioning: 1})
       })
       .then(function(tracks) {
-        var next_page = tracks['next_href'];
         append(tracks.collection);
 
-        while(next_page) {
-          $.get(next_page, function(tracks) {
-            next_page = tracks['next_href'];
+        while(tracks.hasOwnProperty('next_href')) {
+          $.get(tracks.next_href, function(new_tracks) {
+            tracks = new_tracks;
             append(tracks.collection);
           });
         }
@@ -37,8 +35,7 @@ $('#authorize').on('click', function() {
 function append(tracks) {
   var track_list = $('#tracks');
 
-  $('[data-hide="after-fetch"]').hide();
-  $('[data-show="after-fetch"]').show();
+  animate('after-fetch');
 
   for(var index in tracks) {
     var track = tracks[index];
@@ -52,4 +49,9 @@ function append(tracks) {
 
     track_list.append(append);
   }
+}
+
+function animate(step) {
+  $('[data-hide="' + step + '"]').hide();
+  $('[data-show="' + step + '"]').show();
 }
