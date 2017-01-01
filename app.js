@@ -26,6 +26,18 @@ $('#authorize').on('click', function() {
         var next_page = tracks['next_href'];
         append(tracks.collection);
 
+        console.dir(next_page);
+
+        SC.get(next_page).then(function(tracks) {
+          console.dir(tracks);
+
+          next_page = tracks['next_href'];
+          append(tracks.collection);
+        });
+
+        console.dir(next_page);
+
+
         /*while(next_page) {
           SC.get(next_page).then(function(tracks) {
             console.dir(tracks);
