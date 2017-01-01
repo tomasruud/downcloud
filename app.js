@@ -16,7 +16,8 @@ $('#authorize').on('click', function() {
       .then(function(session) {
         token = session.oauth_token;
 
-        animate_step('after-auth');
+        $('[data-hide="after-auth"]').hide();
+        $('[data-show="after-auth"]').show();
 
         return SC.get('/me/tracks', {limit: config.limit, linked_partitioning: 1})
       })
@@ -39,7 +40,8 @@ $('#authorize').on('click', function() {
 function append(tracks) {
   var track_list = $('#tracks');
 
-  animate_step('after-fetch');
+  $('[data-hide="after-fetch"]').hide();
+  $('[data-show="after-fetch"]').show();
 
   for(var index in tracks) {
     var track = tracks[index];
@@ -53,9 +55,4 @@ function append(tracks) {
 
     track_list.append(append);
   }
-}
-
-function animate_step(step) {
-  $('[data-hide="' + step + '"]').hide();
-  $('[data-show="' + step + '"]').show();
 }
