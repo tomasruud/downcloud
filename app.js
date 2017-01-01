@@ -28,7 +28,7 @@ $('#authorize').on('click', function() {
 
         console.dir(next_page);
 
-        SC.get(next_page).then(function(tracks) {
+        $.get(next_page, function(tracks) {
           console.dir(tracks);
 
           next_page = tracks['next_href'];
@@ -36,7 +36,6 @@ $('#authorize').on('click', function() {
         });
 
         console.dir(next_page);
-
 
         /*while(next_page) {
           SC.get(next_page).then(function(tracks) {
