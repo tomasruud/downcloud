@@ -22,29 +22,15 @@ $('#authorize').on('click', function() {
         return SC.get('/me/tracks', {limit: config.limit, linked_partitioning: 1})
       })
       .then(function(tracks) {
-        console.dir(tracks);
         var next_page = tracks['next_href'];
         append(tracks.collection);
 
-        console.dir(next_page);
-
-        $.get(next_page, function(tracks) {
-          console.dir(tracks);
-
-          next_page = tracks['next_href'];
-          append(tracks.collection);
-        });
-
-        console.dir(next_page);
-
-        /*while(next_page) {
-          SC.get(next_page).then(function(tracks) {
-            console.dir(tracks);
-
+        while(next_page) {
+          $.get(next_page, function(tracks) {
             next_page = tracks['next_href'];
             append(tracks.collection);
           });
-        }*/
+        }
       });
 });
 
