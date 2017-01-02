@@ -21,6 +21,8 @@ $('#authorize').on('click', function() {
         return SC.get('/me/tracks', {limit: config.limit, linked_partitioning: 1})
       })
       .then(function(tracks) {
+        animate('after-fetch');
+           
         append(tracks.collection);
 
         while(tracks.hasOwnProperty('next_href')) {
@@ -34,8 +36,6 @@ $('#authorize').on('click', function() {
 
 function append(tracks) {
   var track_list = $('#tracks');
-
-  animate('after-fetch');
 
   for(var index in tracks) {
     var track = tracks[index];
