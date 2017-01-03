@@ -3,7 +3,7 @@ var token = null;
 var config = {
   redirect:  'http://downloader.soundcloud.ruud.ninja/callback.html',
   client_id: 'c205c3e2eedb509dff1c1147765b055d',
-  limit:     50
+  limit:     200
 };
 
 $('#authorize').on('click', function() {
@@ -22,17 +22,21 @@ $('#authorize').on('click', function() {
       })
       .then(function(tracks) {
         animate('after-fetch');
-           
-        append(tracks.collection);
-
-        while(tracks.hasOwnProperty('next_href')) {
-          $.get(tracks.next_href, function(new_tracks) {
-            tracks = new_tracks;
-            append(tracks.collection);
-          });
-        }
+        fetch(tracks);
       });
 });
+
+function fetch(tracks) {
+  append(tracks.collection);
+  
+  if(!tracks.hasOwnProperty('next_href')) {
+    return;
+  }  
+  
+  $.get(tracks.next_href, function(new_tracks) {
+    fetch(new_tracks);
+  });
+}
 
 function append(tracks) {
   var track_list = $('#tracks');
