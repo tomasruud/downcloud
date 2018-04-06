@@ -2,17 +2,16 @@
   "name": "downcloud",
   "version": "2.0.0-alpha",
   "private": true,
-  "dependencies": {
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-scripts": "1.1.4"
-  },
   "scripts": {
     "lint": "standard --fix",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "npm run lint && react-scripts test --env=jsdom"
+  },
+  "dependencies": {
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4"
   },
   "devDependencies": {
     "standard": "^11.0.1"
