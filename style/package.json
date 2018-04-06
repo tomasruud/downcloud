@@ -1,0 +1,20 @@
+{
+  "name": "@downcloud/style",
+  "version": "1.0.0",
+  "private": true,
+  "main": "build/index.css",
+  "scripts": {
+    "build": "node-sass index.scss build/index.css",
+    "start": "npm-watch"
+  },
+  "watch": {
+    "build": "index.scss"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "npm-watch": "^0.3.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.8.3"
+  }
+}
