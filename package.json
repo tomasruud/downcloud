@@ -1,13 +1,23 @@
 {
+  "name": "downcloud",
+  "version": "2.0.0-alpha",
   "private": true,
-  "devDependencies": {
-    "concurrently": "^2.2.0",
-    "http-server": "^0.9.0",
-    "localtunnel": "^1.8.1"
+  "dependencies": {
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start:server": "./node_modules/.bin/http-server .",
-    "start:lt": "./node_modules/.bin/lt --port 8080 --subdomain yoloyloyolo",
-    "start": "./node_modules/.bin/concurrently \"npm run start:server\" \"npm run start:lt\""
+    "lint": "standard --fix",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "standard": {
+    "ignore": "old/**"
   }
 }
