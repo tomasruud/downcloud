@@ -17,13 +17,15 @@ SC.connect()
   })
   .then(function (tracks) {
     fetch(tracks)
+    console.dir(items)
   })
 
 function fetch (tracks) {
   append(tracks.collection)
 
-  if (tracks.hasOwnProperty('next_href')) {
-    // Get tracks.next_href then fetch(newTracks)
+  if (tracks.next_href) {
+    // Get tracks.next_href
+    fetch(tracks)
   }
 }
 
