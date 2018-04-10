@@ -35,11 +35,15 @@ class App extends Component {
         accessToken: session.oauth_token
       })
 
+      console.log('Connected')
+
       this.fetchTracks()
     })
   }
 
   fetchTracks () {
+    console.log('Fetching tracks')
+
     SC.get(this.apiBase + '/me/tracks', {
       limit: this.pageSize,
       linked_partitioning: 1
@@ -47,6 +51,8 @@ class App extends Component {
   }
 
   fetch (tracks) {
+    console.log('Got tracks')
+    console.dir(tracks)
     let newTracks = []
 
     tracks.collection.forEach(track =>
@@ -56,7 +62,7 @@ class App extends Component {
       })
     )
 
-    this.setState(old => ({tracks: [...old.tracks, newTracks]}))
+    this.setState(prev => ({tracks: [...prev.tracks, newTracks]}))
 
     if (tracks.next_href) {
       SC.get(tracks.next_href).then(tracks => this.fetch(tracks))
