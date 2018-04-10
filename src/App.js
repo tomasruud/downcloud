@@ -19,9 +19,15 @@ class App extends Component {
       accessToken: null,
       tracks: []
     }
+
+    this.authenticateWithSoundcloud = this.authenticateWithSoundcloud.bind(this)
+    this.fetchTracks = this.fetchTracks.bind(this)
+    this.fetch = this.fetch.bind(this)
   }
 
   componentDidMount () {
+    console.log('Mounted')
+
     SC.initialize({
       client_id: this.clientId,
       redirect_uri: this.redirectUri,
@@ -31,11 +37,13 @@ class App extends Component {
 
   authenticateWithSoundcloud () {
     SC.connect().then(session => {
+      console.log('Connected')
+
       this.setState({
         accessToken: session.oauth_token
       })
 
-      console.log('Connected')
+      console.log('Session set')
 
       this.fetchTracks()
     })
