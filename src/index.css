@@ -29,7 +29,7 @@ html {
 }
 
 body {
-    background: url('./background.jpg') no-repeat center center;
+    background: url('./background.jpg') no-repeat center center fixed;
     background-size: cover;
 
     min-height: 100%;

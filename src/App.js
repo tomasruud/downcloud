@@ -74,7 +74,7 @@ class App extends Component {
   render () {
     return [
       (!this.state.accessToken && <Login key='login' onLoginClick={this.authenticateWithSoundcloud} />),
-      (this.state.accessToken && <Spinner />),
+      (this.state.accessToken && !this.state.tracksFetched && <Spinner />),
       (this.state.tracksFetched && <List tracks={this.state.tracks} />),
       <Footer key='footer' />
     ]

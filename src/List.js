@@ -11,7 +11,7 @@ export default class List extends Component {
               <p>No tracks <span role='img' aria-label='sad'>😢</span></p>)}
 
             {(this.props.tracks && this.props.tracks.length) && (
-              <ul>
+              <ul className='list-unstyled'>
                 {this.props.tracks.map((track, index) => (
                   <li key={index}>
                     <a href={track.url}>{track.title}</a>
