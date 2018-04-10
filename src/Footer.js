@@ -6,7 +6,7 @@ export default class Footer extends Component {
     return (
       <Container>
         <Row>
-          <Col className='bg-light p-5 mt-4' lg='auto'>
+          <Col className='bg-light p-5 mt-4 mb-sm-5' lg='auto'>
             <p>
               <a href='https://soundcloud.com/autodrums' target='_blank' rel='noopener noreferrer'>@autodrums</a> on
               Soundcloud

@@ -13,7 +13,7 @@ export default class List extends Component {
             {(this.props.tracks && this.props.tracks.length) && (
               <ul className='list-unstyled'>
                 {this.props.tracks.map((track, index) => (
-                  <li key={index}>
+                  <li key={index} className='mb-2'>
                     <a href={track.url}>{track.title}</a>
                   </li>
                 ))}

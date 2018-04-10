@@ -77,3 +77,7 @@ h1 {
 .sk-double-bounce.spinner .sk-child {
     background-color: #E87A14;
 }
+
+.list-unstyled li:not(:last-child) {
+    margin-bottom: .5rem;
+}
