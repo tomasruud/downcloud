@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 
-import Spinner from './Spinner'
-
 export default class List extends Component {
   render () {
     return (
       <Container>
         <Row>
           <Col className='bg-light p-5 mt-sm-5' lg='auto'>
-            {!this.props.tracks && <Spinner />}
-            {this.props.tracks && (
+            {(!this.props.tracks || !this.props.tracks.length) && (
+              <p>No tracks <span role='image' aria-label='sad'>😢</span></p>)}
+
+            {(this.props.tracks && this.props.tracks.length) && (
               <ul>
                 {this.props.tracks.map((track, index) => (
                   <li key={index}>

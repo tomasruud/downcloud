@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Footer from './Footer'
 import Login from './Login'
 import List from './List'
+import Spinner from './Spinner'
 
 const SC = require('soundcloud')
 
@@ -17,7 +18,8 @@ class App extends Component {
 
     this.state = {
       accessToken: null,
-      tracks: []
+      tracks: [],
+      tracksFetched: false
     }
 
     this.authenticateWithSoundcloud = this.authenticateWithSoundcloud.bind(this)
@@ -26,8 +28,6 @@ class App extends Component {
   }
 
   componentDidMount () {
-    console.log('Mounted')
-
     SC.initialize({
       client_id: this.clientId,
       redirect_uri: this.redirectUri
@@ -36,21 +36,15 @@ class App extends Component {
 
   authenticateWithSoundcloud () {
     SC.connect().then(session => {
-      console.log('Connected')
-
       this.setState({
         accessToken: session.oauth_token
       })
-
-      console.log('Session set')
 
       this.fetchTracks()
     })
   }
 
   fetchTracks () {
-    console.log('Fetching tracks')
-
     SC.get('/me/tracks', {
       limit: this.pageSize,
       linked_partitioning: 1
@@ -58,8 +52,6 @@ class App extends Component {
   }
 
   fetch (tracks) {
-    console.log('Got tracks')
-    console.dir(tracks)
     let newTracks = []
 
     tracks.collection.forEach(track =>
@@ -74,13 +66,16 @@ class App extends Component {
     if (tracks.next_href) {
       let url = tracks.next_href.replace(this.apiBase, '')
       SC.get(url).then(tracks => this.fetch(tracks))
+    } else {
+      this.setState({tracksFetched: true})
     }
   }
 
   render () {
     return [
       (!this.state.accessToken && <Login key='login' onLoginClick={this.authenticateWithSoundcloud} />),
-      (this.state.accessToken && <List key='list' tracks={this.props.tracks} />),
+      (this.state.accessToken && <Spinner />),
+      (this.state.tracksFetched && <List tracks={this.state.tracks} />),
       <Footer key='footer' />
     ]
   }
