@@ -10,7 +10,7 @@ export default class List extends Component {
         <Row>
           <Col className='bg-light p-5 mt-sm-5' lg='auto'>
             {(!this.props.tracks || !this.props.tracks.length) && <Spinner />}
-            {(this.props.tracks && !this.props.tracks.length) && (
+            {(this.props.tracks && this.props.tracks.length) && (
               <ul>
                 {this.props.tracks.map((track, index) => (
                   <li key={index}>
