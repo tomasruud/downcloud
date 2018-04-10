@@ -8,7 +8,7 @@ export default class List extends Component {
         <Row>
           <Col className='bg-light p-5 mt-sm-5' lg='auto'>
             {(!this.props.tracks || !this.props.tracks.length) && (
-              <p>No tracks <span role='image' aria-label='sad'>😢</span></p>)}
+              <p>No tracks <span role='img' aria-label='sad'>😢</span></p>)}
 
             {(this.props.tracks && this.props.tracks.length) && (
               <ul>
