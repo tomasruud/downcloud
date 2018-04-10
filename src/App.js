@@ -11,7 +11,7 @@ class App extends Component {
     super(props)
 
     this.apiBase = 'https://api.soundcloud.com'
-    this.redirectUri = 'http://downcloud.ruud.ninja/callback.html'
+    this.redirectUri = 'https://downcloud.ruud.ninja/callback.html'
     this.clientId = 'c205c3e2eedb509dff1c1147765b055d'
     this.pageSize = 200
 
