@@ -6,11 +6,11 @@ export default class Login extends Component {
     return (
       <Container>
         <Row>
-          <Col className='bg-light p-5 mt-5' lg={6}>
-            <h1>[downcloud]</h1>
-            <p className='lead'>Download your own Souncloud tracks in the original, uncompressed format. 🤙</p>
-            <p>Click the button below to continue. None of your data will be stored anywhere, everything is done in your local browser. 🙌</p>
-            <Button color='primary' size='lg' className='mt-3'>Sign in with Soundcloud</Button>
+          <Col className='bg-light p-5 mt-sm-5' lg={6}>
+            <h1>Hello!</h1>
+            <p className='lead'>This site helps you download your own Souncloud tracks as original, uncompressed files.</p>
+            <p>Press the button below to continue. <span role='img' aria-label='Hand pointing down'>👇</span></p>
+            <Button color='primary' size='lg' onClick={this.props.onLoginClick}>Sign in with Soundcloud</Button>
           </Col>
         </Row>
       </Container>
