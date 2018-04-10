@@ -30,8 +30,7 @@ class App extends Component {
 
     SC.initialize({
       client_id: this.clientId,
-      redirect_uri: this.redirectUri,
-      baseUrl: ''
+      redirect_uri: this.redirectUri
     })
   }
 
@@ -52,7 +51,7 @@ class App extends Component {
   fetchTracks () {
     console.log('Fetching tracks')
 
-    SC.get(this.apiBase + '/me/tracks', {
+    SC.get('/me/tracks', {
       limit: this.pageSize,
       linked_partitioning: 1
     }).then(tracks => this.fetch(tracks))
@@ -73,7 +72,8 @@ class App extends Component {
     this.setState(prev => ({tracks: [...prev.tracks, newTracks]}))
 
     if (tracks.next_href) {
-      SC.get(tracks.next_href).then(tracks => this.fetch(tracks))
+      let url = tracks.next_href.replace(this.apiBase, '')
+      SC.get(url).then(tracks => this.fetch(tracks))
     }
   }
 
