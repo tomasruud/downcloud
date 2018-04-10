@@ -69,7 +69,7 @@ class App extends Component {
       })
     )
 
-    this.setState(prev => ({tracks: [...prev.tracks, newTracks]}))
+    this.setState(prev => ({tracks: prev.tracks.concat(newTracks)}))
 
     if (tracks.next_href) {
       let url = tracks.next_href.replace(this.apiBase, '')
