@@ -10,21 +10,22 @@ class App extends Component {
   constructor (props) {
     super(props)
 
-    this.redirectUri = 'https://downcloud.ruud.ninja/callback.html'
+    this.apiBase = 'https://api.soundcloud.com'
+    this.redirectUri = 'http://downcloud.ruud.ninja/callback.html'
     this.clientId = 'c205c3e2eedb509dff1c1147765b055d'
     this.pageSize = 200
 
     this.state = {
       accessToken: null,
-      tracks: [],
-      tracksFetched: false
+      tracks: []
     }
   }
 
   componentDidMount () {
     SC.initialize({
       client_id: this.clientId,
-      redirect_uri: this.redirectUri
+      redirect_uri: this.redirectUri,
+      baseUrl: ''
     })
   }
 
@@ -39,38 +40,33 @@ class App extends Component {
   }
 
   fetchTracks () {
-    SC.get('/me/tracks', {limit: this.pageSize, linked_partitioning: 1})
-      .then(tracks => this.doFetch(tracks))
+    SC.get(this.apiBase + '/me/tracks', {
+      limit: this.pageSize,
+      linked_partitioning: 1
+    }).then(tracks => this.fetch(tracks))
   }
 
-  doFetch (tracks) {
-    this.append(tracks.collection)
-
-    if (tracks.next_href) {
-      // Get tracks.next_href
-      this.doFetch(tracks)
-    }
-  }
-
-  append (tracks) {
+  fetch (tracks) {
     let newTracks = []
 
-    tracks.forEach(track =>
+    tracks.collection.forEach(track =>
       newTracks.push({
         title: track.title,
         url: track.download_url + '?oauth_token=' + this.state.accessToken
       })
     )
 
-    this.setState(old => ({
-      tracks: [...old.tracks, newTracks]
-    }))
+    this.setState(old => ({tracks: [...old.tracks, newTracks]}))
+
+    if (tracks.next_href) {
+      SC.get(tracks.next_href).then(tracks => this.fetch(tracks))
+    }
   }
 
   render () {
     return [
       (!this.state.accessToken && <Login key='login' onLoginClick={this.authenticateWithSoundcloud} />),
-      (this.state.accessToken && <List key='list' />),
+      (this.state.accessToken && <List key='list' tracks={this.props.tracks} />),
       <Footer key='footer' />
     ]
   }
