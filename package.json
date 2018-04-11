@@ -2,10 +2,11 @@
   "name": "@downcloud/app",
   "version": "2.0.0-alpha",
   "private": true,
+  "homepage": "https://downcloud.ruud.ninja",
   "scripts": {
     "lint": "standard --fix",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snapshot",
     "test": "npm run lint && react-scripts test --env=jsdom"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "spinkit": "^1.2.5"
   },
   "devDependencies": {
+    "react-snapshot": "^1.3.0",
     "standard": "^11.0.1"
   }
 }
