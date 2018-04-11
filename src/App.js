@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
+import { Col, Container, Row } from 'reactstrap'
 
 import Footer from './Footer'
 import Login from './Login'
 import List from './List'
 import Spinner from './Spinner'
 
-const SC = require('soundcloud')
+import Soundcloud from './soundcloud'
+import FakeSoundcloud from './soundcloud.local'
 
 class App extends Component {
   constructor (props) {
     super(props)
 
-    this.apiBase = 'https://api.soundcloud.com'
-    this.redirectUri = 'https://downcloud.ruud.ninja/callback.html'
-    this.clientId = 'c205c3e2eedb509dff1c1147765b055d'
-    this.pageSize = 200
+    if (process.env.NODE_ENV === 'production') {
+      this.service = new Soundcloud({
+        redirectUri: 'https://downcloud.ruud.ninja/callback.html',
+        clientId: 'c205c3e2eedb509dff1c1147765b055d'
+      })
+    } else {
+      this.service = new FakeSoundcloud()
+    }
 
     this.state = {
       accessToken: null,
@@ -22,61 +28,35 @@ class App extends Component {
       tracksFetched: false
     }
 
-    this.authenticateWithSoundcloud = this.authenticateWithSoundcloud.bind(this)
     this.fetchTracks = this.fetchTracks.bind(this)
-    this.fetch = this.fetch.bind(this)
   }
 
-  componentDidMount () {
-    SC.initialize({
-      client_id: this.clientId,
-      redirect_uri: this.redirectUri
-    })
-  }
+  async fetchTracks () {
+    const token = await this.service.authenticate()
+    this.setState({accessToken: token})
 
-  authenticateWithSoundcloud () {
-    SC.connect().then(session => {
-      this.setState({
-        accessToken: session.oauth_token
-      })
-
-      this.fetchTracks()
-    })
-  }
-
-  fetchTracks () {
-    SC.get('/me/tracks', {
-      limit: this.pageSize,
-      linked_partitioning: 1
-    }).then(tracks => this.fetch(tracks))
-  }
-
-  fetch (tracks) {
-    let newTracks = []
-
-    tracks.collection.forEach(track =>
-      newTracks.push({
-        title: track.title,
-        url: track.download_url + '?oauth_token=' + this.state.accessToken
-      })
-    )
-
-    this.setState(prev => ({tracks: prev.tracks.concat(newTracks)}))
-
-    if (tracks.next_href) {
-      let url = tracks.next_href.replace(this.apiBase, '')
-      SC.get(url).then(tracks => this.fetch(tracks))
-    } else {
-      this.setState({tracksFetched: true})
-    }
+    const tracks = await this.service.getAllTracksForUser()
+    this.setState({tracks: tracks, tracksFetched: true})
   }
 
   render () {
     return [
-      (!this.state.accessToken && <Login key='login' onLoginClick={this.authenticateWithSoundcloud} />),
-      (this.state.accessToken && !this.state.tracksFetched && <Spinner />),
-      (this.state.tracksFetched && <List tracks={this.state.tracks} />),
-      <Footer key='footer' />
+      <Container key='content'>
+        <Row>
+          <Col className='bg-light p-5 mt-sm-5' lg='auto'>
+            {!this.state.accessToken && <Login onLoginClick={this.fetchTracks} />}
+            {this.state.accessToken && !this.state.tracksFetched && <Spinner key='spinner' />}
+            {this.state.tracksFetched && <List tracks={this.state.tracks} />}
+          </Col>
+        </Row>
+      </Container>,
+      <Container key='footer'>
+        <Row>
+          <Col className='bg-light p-5 mt-4 mb-sm-5' lg='auto'>
+            <Footer />
+          </Col>
+        </Row>
+      </Container>
     ]
   }
 }
