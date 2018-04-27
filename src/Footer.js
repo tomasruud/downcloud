@@ -1,20 +1,37 @@
 import React from 'react'
+import Emoji from './Emoji'
+import info from '../package.json'
+import './footer.css'
 
-export default function Footer () {
-  return (
-    <div>
-      <p>
-        <a href='https://soundcloud.com/autodrums' target='_blank' rel='noopener noreferrer'>@autodrums</a> on Soundcloud<br />
-        <a href='https://github.com/tomasruud' target='_blank' rel='noopener noreferrer'>@tomasruud</a> on Github
-      </p>
+export default () => (
+  <footer className="footer">
+    <ul>
+      <li>
+        Made with <Emoji label="chill" emoji="🤙" /> by Tomas
+      </li>
 
-      <p>
-        <a href='https://github.com/tomasruud/downcloud/issues' target='_blank' rel='noopener noreferrer'> Report issues </a><span role='img' aria-label='Bug'>🐛</span>
-      </p>
+      <li className="separate">
+        <a href="https://soundcloud.com/autodrums" target="_blank" rel="noopener noreferrer">
+          @autodrums
+        </a>{' '}
+        on Soundcloud
+      </li>
 
-      <p className='text-muted'>
-        <span role='img' aria-label='Photo'>📸</span> by <a href='https://unsplash.com/photos/HU-uL54pfQI' target='_blank' rel='noopener noreferrer'>Juja Han on Unsplash</a>
-      </p>
-    </div>
-  )
-}
+      <li>
+        <a href="https://github.com/tomasruud" target="_blank" rel="noopener noreferrer">
+          @tomasruud
+        </a>{' '}
+        on Github
+      </li>
+
+      <li className="separate">
+        <a href="https://github.com/tomasruud/downcloud/issues" target="_blank" rel="noopener noreferrer">
+          Report issues
+        </a>{' '}
+        <Emoji label="bug" emoji="🐛" />
+      </li>
+
+      <li>Version {info.version}</li>
+    </ul>
+  </footer>
+)

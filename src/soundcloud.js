@@ -1,7 +1,7 @@
 const SC = require('soundcloud')
 
 export default class Soundcloud {
-  constructor (options) {
+  constructor(options) {
     this.clientId = options.clientId
     this.redirectUri = options.redirectUri
     this.apiBase = 'https://api.soundcloud.com'
@@ -13,7 +13,7 @@ export default class Soundcloud {
     })
   }
 
-  async authenticate () {
+  async authenticate() {
     const session = await SC.connect()
     const token = session.oauth_token
 
@@ -22,16 +22,21 @@ export default class Soundcloud {
     return token
   }
 
-  async getAllTracksForUser () {
-    let result = await SC.get('/me/tracks', {limit: this.pageSize, linked_partitioning: 1})
+  async getAllTracksForUser() {
+    let result = await SC.get('/me/tracks', {
+      limit: this.pageSize,
+      linked_partitioning: 1
+    })
     let tracks = []
     let completed = false
 
     while (!completed) {
-      result.collection.forEach(track => tracks.push({
-        title: track.title,
-        url: track.download_url + '?oauth_token=' + this.accessToken
-      }))
+      result.collection.forEach(track =>
+        tracks.push({
+          title: track.title,
+          url: track.download_url + '?oauth_token=' + this.accessToken
+        })
+      )
 
       if (result.next_href) {
         const url = tracks.next_href.replace(this.apiBase, '')

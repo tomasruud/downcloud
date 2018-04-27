@@ -1,0 +1,10 @@
+.list {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+.list li::before {
+  content: '🎵';
+  padding-right: 0.5rem;
+  color: #f92300;
+}

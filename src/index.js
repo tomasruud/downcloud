@@ -1,9 +1,8 @@
 import React from 'react'
-import { render } from 'react-snapshot'
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
-
+import {render} from 'react-snapshot'
 import App from './App'
+import theme from './theme'
+
+theme.injectStyles()
 
 render(<App />, document.getElementById('app'))

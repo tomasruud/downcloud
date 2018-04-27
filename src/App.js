@@ -1,16 +1,15 @@
-import React, { Component } from 'react'
-import { Col, Container, Row } from 'reactstrap'
-
+import React, {Component} from 'react'
 import Footer from './Footer'
 import Login from './Login'
 import List from './List'
 import Spinner from './Spinner'
-
+import Emoji from './Emoji'
 import Soundcloud from './soundcloud'
 import FakeSoundcloud from './soundcloud.local'
+import './app.css'
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     if (process.env.NODE_ENV === 'production') {
@@ -31,7 +30,7 @@ class App extends Component {
     this.fetchTracks = this.fetchTracks.bind(this)
   }
 
-  async fetchTracks () {
+  async fetchTracks() {
     const token = await this.service.authenticate()
     this.setState({accessToken: token})
 
@@ -39,25 +38,41 @@ class App extends Component {
     this.setState({tracks: tracks, tracksFetched: true})
   }
 
-  render () {
-    return [
-      <Container key='content'>
-        <Row>
-          <Col className='bg-light p-5 mt-sm-5' lg='auto'>
-            {!this.state.accessToken && <Login onLoginClick={this.fetchTracks} />}
-            {this.state.accessToken && !this.state.tracksFetched && <Spinner key='spinner' />}
-            {this.state.tracksFetched && <List tracks={this.state.tracks} />}
-          </Col>
-        </Row>
-      </Container>,
-      <Container key='footer'>
-        <Row>
-          <Col className='bg-light p-5 mt-4 mb-sm-5' lg='auto'>
-            <Footer />
-          </Col>
-        </Row>
-      </Container>
-    ]
+  render() {
+    let content = <div />
+
+    if (!this.state.accessToken) {
+      content = <Login onLoginClick={this.fetchTracks} />
+    } else {
+      if (!this.state.tracksFetched) {
+        content = <Spinner />
+      } else {
+        content = (
+          <List
+            tracks={this.state.tracks}
+            onLogOut={() =>
+              this.setState({
+                accessToken: null,
+                tracks: [],
+                tracksFetched: false
+              })
+            }
+          />
+        )
+      }
+    }
+
+    return (
+      <div className="container">
+        <header className="header">
+          <h1>
+            Downcloud <Emoji label="Hand waving" emoji="👋" />
+          </h1>
+        </header>
+        <main className="main">{content}</main>
+        <Footer />
+      </div>
+    )
   }
 }
 
