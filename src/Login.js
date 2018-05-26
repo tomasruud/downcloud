@@ -5,7 +5,10 @@ import './login.css'
 export default function LoginView({onLoginClick}) {
   return (
     <Fragment>
-      <p>This site helps you download your own Souncloud tracks as original, uncompressed files.</p>
+      <p>
+        This site helps you download your own Souncloud tracks as original,
+        uncompressed files.
+      </p>
       <button className="button" onClick={onLoginClick}>
         Sign in with Soundcloud
       </button>{' '}

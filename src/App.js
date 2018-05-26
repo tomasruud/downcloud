@@ -12,14 +12,7 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    if (process.env.NODE_ENV === 'production') {
-      this.service = new Soundcloud({
-        redirectUri: 'https://downcloud.ruud.ninja/callback.html',
-        clientId: 'c205c3e2eedb509dff1c1147765b055d'
-      })
-    } else {
-      this.service = new FakeSoundcloud()
-    }
+    this.initializeSoundcloudService()
 
     this.state = {
       accessToken: null,
@@ -28,6 +21,20 @@ class App extends Component {
     }
 
     this.fetchTracks = this.fetchTracks.bind(this)
+    this.initializeSoundcloudService = this.initializeSoundcloudService.bind(
+      this
+    )
+  }
+
+  initializeSoundcloudService() {
+    if (process.env.NODE_ENV === 'production') {
+      this.service = new Soundcloud({
+        redirectUri: 'https://downcloud.ruud.ninja/callback.html',
+        clientId: 'c205c3e2eedb509dff1c1147765b055d'
+      })
+    } else {
+      this.service = new FakeSoundcloud()
+    }
   }
 
   async fetchTracks() {
@@ -50,13 +57,15 @@ class App extends Component {
         content = (
           <List
             tracks={this.state.tracks}
-            onLogOut={() =>
+            onLogOut={() => {
               this.setState({
                 accessToken: null,
                 tracks: [],
                 tracksFetched: false
               })
-            }
+
+              this.initializeSoundcloudService()
+            }}
           />
         )
       }

@@ -1,4 +1,6 @@
 import React, {Fragment} from 'react'
+import multiDownload from 'multi-download'
+
 import Emoji from './Emoji'
 import './list.css'
 
@@ -7,7 +9,15 @@ export default ({tracks, onLogOut}) => {
     return (
       <Fragment>
         <p>
-          Click on a track name to start downloading, or <a onClick={onLogOut}>sign out</a> to try again.
+          Click on a track name to start downloading, or{' '}
+          <a onClick={onLogOut}>sign out</a> to try again.
+        </p>
+        <p>
+          Alternatively you can{' '}
+          <a onClick={() => multiDownload(tracks.map(t => t.url))}>
+            download all
+          </a>{' '}
+          tracks. (This feature is experimental and may not work)
         </p>
         <h2>
           {tracks.length} track{tracks.length !== 1 && 's'}
