@@ -5,7 +5,9 @@ env:
   - CI=yes
 cache:
   directories:
-    - node_modules
+  - "$HOME/.npm"
+notifications:
+  email: false
 install:
   - npm install
 script:
