@@ -10,26 +10,40 @@
   },
   "dependencies": {
     "multi-download": "^2.0.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "^2.0.0-next.b2fd8db8",
     "soundcloud": "^3.3.0",
     "spinkit": "^1.2.5",
     "typography": "^0.16.17",
     "typography-theme-noriega": "^0.15.10"
   },
   "devDependencies": {
-    "prettier": "^1.12.1",
-    "react-snapshot": "^1.3.0"
+    "prettier": "^1.13.6",
+    "react-snapshot": "^1.3.0",
+    "react-styleguidist": "^7.0.19"
   },
   "prettier": {
     "printWidth": 80,
     "tabWidth": 2,
-    "parser": "babylon",
     "semi": false,
     "singleQuote": true,
     "trailingComma": "none",
     "bracketSpacing": false,
     "jsxBracketSameLine": true
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }
