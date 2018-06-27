@@ -57,7 +57,9 @@ class App extends Component {
         content = (
           <List
             tracks={this.state.tracks}
-            onLogOut={() => {
+            onLogOut={e => {
+              e.preventDefault()
+
               this.setState({
                 accessToken: null,
                 tracks: [],

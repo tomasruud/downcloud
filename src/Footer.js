@@ -7,7 +7,7 @@ export default () => (
   <footer className="footer">
     <ul>
       <li>
-        Made with <Emoji label="chill" emoji="🤙" /> by Tomas
+        Made with <Emoji label="chill" emoji="🎺" /> by Tomas
       </li>
 
       <li className="separate">
