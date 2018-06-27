@@ -39,7 +39,7 @@ export default class Soundcloud {
       )
 
       if (result.next_href) {
-        const url = tracks.next_href.replace(this.apiBase, '')
+        const url = result.next_href.replace(this.apiBase, '')
         result = await SC.get(url)
       } else {
         completed = true
