@@ -10,11 +10,11 @@ export default ({tracks, onLogOut}) => {
       <Fragment>
         <p>
           Click on a track name to start downloading, or{' '}
-          <a onClick={onLogOut}>sign out</a> to try again.
+          <a onClick={onLogOut} href="#">sign out</a> to try again.
         </p>
         <p>
           Alternatively you can{' '}
-          <a onClick={() => multiDownload(tracks.map(t => t.url))}>
+          <a onClick={() => multiDownload(tracks.map(t => t.url))} href="#">
             download all
           </a>{' '}
           tracks. (This feature is experimental and may not work)
@@ -39,7 +39,7 @@ export default ({tracks, onLogOut}) => {
         Could not find any tracks <Emoji label="sad" emoji="😢" />
       </p>
       <p>
-        <a onClick={onLogOut}>Sign out</a> and try again?
+        <a onClick={onLogOut} href="#">Sign out</a> and try again?
       </p>
     </Fragment>
   )
