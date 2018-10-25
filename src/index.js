@@ -1,8 +1,9 @@
 import React from 'react'
 import {render} from 'react-snapshot'
-import App from './App'
-import theme from './theme'
 
-theme.injectStyles()
+import 'normalize.css'
+import './global.module.css'
+
+import App from './App'
 
 render(<App />, document.getElementById('app'))

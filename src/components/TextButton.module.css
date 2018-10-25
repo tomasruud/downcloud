@@ -1,0 +1,13 @@
+@value colors: "../variables.module.css";
+@value primary, dark from colors;
+
+.link {
+  color: primary;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link:hover, .link:active {
+  color: dark;
+  cursor: pointer;
+}

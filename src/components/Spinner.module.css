@@ -1,0 +1,10 @@
+@value colors: "../variables.module.css";
+@value primary from colors;
+
+.wrapper {
+  margin: 0;
+}
+
+.ball {
+  background-color: primary !important;
+}
