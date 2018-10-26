@@ -32,8 +32,9 @@ export const receiveTracks = tracks => ({
 
 export const fetchTracks = () => async (dispatch, getState) => {
   dispatch(requestTracks())
-  const token = getState().accessToken.token
   const tracks = await Soundcloud.getTracks()
+  
+  const token = getState().accessToken.token
 
   const modified = tracks.map(track => ({
     ...track,

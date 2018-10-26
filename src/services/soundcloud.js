@@ -12,7 +12,7 @@ export const authenticate = async () => {
 
 export const getTracks = async () => {
   let result = await SC.get('/me/tracks', {
-    limit: 50,
+    limit: 200,
     linked_partitioning: 1
   })
 
@@ -20,7 +20,7 @@ export const getTracks = async () => {
   let completed = false
 
   while (!completed) {
-    tracks.push(result.collection)
+    tracks.concat(result.collection)
 
     if (result.next_href) {
       const url = result.next_href.replace('https://api.soundcloud.com', '')
