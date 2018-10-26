@@ -1,12 +1,12 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "homepage": "https://downcloud.ruud.ninja",
   "scripts": {
     "format": "prettier --write src/**/*",
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot",
-    "test": "npm run format && react-scripts test --env=jsdom"
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
     "multi-download": "^2.0.1",
@@ -23,8 +23,7 @@
   },
   "devDependencies": {
     "prettier": "^1.14.3",
-    "react-scripts": "^2.0.5",
-    "react-snapshot": "^1.3.0"
+    "react-scripts": "^2.0.5"
   },
   "browserslist": [
     ">0.2%",
