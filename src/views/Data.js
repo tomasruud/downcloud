@@ -42,12 +42,13 @@ class Data extends React.Component {
             Click on a track name to start downloading. You can also{' '}
             <TextButton tag="button" onClick={this.refresh}>
               log out
-            </TextButton>
-            {' '}and try again.
+            </TextButton>{' '}
+            and try again.
           </Paragraph>
           <Paragraph>
-            If you're feeling lucky, try do download all tracks at once. Please not that this
-            feature is experimental and may not work! <Emoji label="wondering" emoji="🤷‍" />
+            If you're feeling lucky, you can try to download all tracks at once.
+            Please not that this feature is experimental and may not work!{' '}
+            <Emoji label="wondering" emoji="🤷‍" />
           </Paragraph>
           <Button
             onClick={e => {
