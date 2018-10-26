@@ -23,7 +23,8 @@ export const getTracks = async () => {
     tracks.push(result.collection)
 
     if (result.next_href) {
-      result = await SC.resolve(result.next_href)
+      const url = result.next_href.replace('https://api.soundcloud.com', '')
+      result = await SC.resolve(url)
     } else {
       completed = true
     }
