@@ -1,0 +1,24 @@
+@value colors: "./variables.module.css";
+@value lightTint from colors;
+
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.container {
+  max-width: 700px;
+
+  margin: 3rem auto 3rem;
+
+  font-family: 'Lato', sans-serif;
+}
+
+.element {
+  padding: 0 2rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+
+  padding: 2rem;
+  background-color: lightTint;
+}

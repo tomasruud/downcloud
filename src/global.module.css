@@ -1,0 +1,16 @@
+@value colors: "./variables.module.css";
+@value light, dark, primary from colors;
+
+::selection {
+  background-color: primary;
+  color: light;
+}
+
+html {
+  font-size: 125%;
+  line-height: 1.61;
+}
+
+body {
+  color: dark;
+}
