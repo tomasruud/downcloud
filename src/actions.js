@@ -33,7 +33,7 @@ export const receiveTracks = tracks => ({
 export const fetchTracks = () => async (dispatch, getState) => {
   dispatch(requestTracks())
   const tracks = await Soundcloud.getTracks()
-  
+
   const token = getState().accessToken.token
 
   const modified = tracks.map(track => ({
@@ -42,4 +42,16 @@ export const fetchTracks = () => async (dispatch, getState) => {
   }))
 
   return dispatch(receiveTracks(modified))
+}
+
+// User
+export const RECEIVE_USER = 'RECEIVE_USER'
+export const receiveUser = user => ({
+  type: RECEIVE_USER,
+  user
+})
+
+export const fetchUser = () => async dispatch => {
+  const user = await Soundcloud.getMe()
+  return dispatch(receiveUser(user))
 }

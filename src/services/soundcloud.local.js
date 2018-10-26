@@ -1,29 +1,13 @@
-export const authenticate = async () =>
-  new Promise(resolve =>
-    setTimeout(() => {
-      resolve('some access token')
-    }, 1000)
-  )
+import {track, user} from './soundcloud.mock'
 
-export const getTracks = async () =>
-  new Promise(resolve =>
-    setTimeout(() => {
-      resolve([
-        {
-          title: 'Funk Blaster',
-          download_url:
-            'https://github.com/sindresorhus/multi-download/raw/master/fixture/rainbow.jpg.zip'
-        },
-        {
-          title: 'Lost in Thought',
-          download_url:
-            'https://github.com/sindresorhus/multi-download/raw/master/fixture/unicorn.jpg.zip'
-        },
-        {
-          title: '7th Dimension',
-          url:
-            'https://github.com/sindresorhus/multi-download/raw/master/fixture/unicorn2.jpg.zip'
-        }
-      ])
-    }, 1000)
-  )
+const timeout = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+const withTimeout = async res => {
+  const ms = Math.random() * (2000 - 500) + 500
+  await timeout(ms)
+  return res
+}
+
+export const authenticate = async () => withTimeout('this-is-541-a-34-token')
+export const getTracks = async () => withTimeout(new Array(10).fill(track))
+export const getMe = async () => withTimeout(user)

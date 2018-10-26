@@ -10,6 +10,10 @@ export const authenticate = async () => {
   return session.oauth_token
 }
 
+export const getMe = async () => {
+  return SC.get('/me')
+}
+
 export const getTracks = async () => {
   let result = await SC.get('/me/tracks', {
     limit: 50,

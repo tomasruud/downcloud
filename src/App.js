@@ -1,6 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {HashRouter, Route, Redirect, withRouter} from 'react-router-dom'
+import {
+  MemoryRouter as Router,
+  Route,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
 
 import Layout from './Layout'
 import {Login, Data} from './views'
@@ -21,12 +26,12 @@ const TokenRoute = withRouter(
 )
 
 const App = () => (
-  <HashRouter>
+  <Router>
     <Layout>
       <TokenRoute exact path="/" component={Data} />
       <Route path="/sign-in" component={Login} />
     </Layout>
-  </HashRouter>
+  </Router>
 )
 
 export default App

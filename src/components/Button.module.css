@@ -24,7 +24,7 @@
 
 .button:active,
 .button:focus {
-  outline: 3px solid primary;
   background-color: transparent;
-  color: dark;
+  color: primary;
+  outline: 2px solid primary;
 }

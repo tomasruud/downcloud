@@ -3,7 +3,8 @@ import {
   REQUEST_ACCESS_TOKEN,
   RECEIVE_ACCESS_TOKEN,
   REQUEST_TRACKS,
-  RECEIVE_TRACKS
+  RECEIVE_TRACKS,
+  RECEIVE_USER
 } from './actions'
 
 const accessToken = (
@@ -58,7 +59,18 @@ const tracks = (
   }
 }
 
+const user = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_USER:
+      return action.user
+
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   accessToken,
-  tracks
+  tracks,
+  user
 })

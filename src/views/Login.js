@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
+
 import {Button, Emoji, Paragraph, Heading, Spinner} from '../components'
 import {fetchAccessToken} from '../actions'
 
@@ -11,17 +12,22 @@ const Login = ({hasToken, isLoading, onLoginClick}) => {
 
   return (
     <React.Fragment>
-      <Heading type="h1">
-        Downcloud <Emoji label="Music note" emoji="🎵" />
-      </Heading>
-      <Paragraph>
-        This site helps you download your own Souncloud tracks as original,
-        uncompressed files.
-      </Paragraph>
       {isLoading ? (
-        <Spinner />
+        <React.Fragment>
+          <Heading type="h1">
+            Signing you in... <Emoji label="investigating" emoji="🕵️‍" />
+          </Heading>
+          <Spinner />
+        </React.Fragment>
       ) : (
         <React.Fragment>
+          <Heading type="h1">
+            Downcloud <Emoji label="Music note" emoji="🎵" />
+          </Heading>
+          <Paragraph>
+            This app helps you download your own Souncloud tracks as original,
+            uncompressed files.
+          </Paragraph>
           <Button onClick={onLoginClick}>
             <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
           </Button>{' '}
