@@ -25,7 +25,7 @@ const Footer = () => (
       >
         Report issues
       </TextButton>{' '}
-      <Emoji label="bug" emoji="🐛" />
+      <Emoji label="bug" emoji="🐛" /> 
       <br />
       Version {info.version}
     </Paragraph>
