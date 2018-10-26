@@ -47,7 +47,7 @@ class Data extends React.Component {
           </Paragraph>
           <Paragraph>
             If you're feeling lucky, you can try to download all tracks at once.
-            Please not that this feature is experimental and may not work!{' '}
+            Please note that this feature is experimental and may not work!{' '}
             <Emoji label="wondering" emoji="🤷‍" />
           </Paragraph>
           <Button
