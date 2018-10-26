@@ -24,7 +24,7 @@ export const getTracks = async () => {
 
     if (result.next_href) {
       const url = result.next_href.replace('https://api.soundcloud.com', '')
-      result = await SC.resolve(url)
+      result = await SC.get(url)
     } else {
       completed = true
     }
