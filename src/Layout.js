@@ -1,7 +1,7 @@
 import React from 'react'
 
 import info from '../package.json'
-import {Paragraph, Emoji, TextButton} from './components'
+import {Paragraph, Emoji, TextButton, Reveal} from './components'
 import {element, container, footer} from './Layout.module.css'
 
 const Footer = () => (
@@ -18,7 +18,12 @@ const Footer = () => (
       on Github
     </Paragraph>
 
-    <Paragraph style={{marginBottom: 0}}>
+    <Reveal label="Legal stuff">
+      <Paragraph>
+        This app uses cookies for Google Analytics. By using Downcloud you're ok with that. None of your data will be stored anywhere, everything is done in your browser session and destroyed once you exit/refresh the site.
+      </Paragraph>
+    </Reveal>
+    <Paragraph style={{ marginBottom: 0 }}>
       <TextButton
         href="https://github.com/tomasruud/downcloud/issues"
         external={true}

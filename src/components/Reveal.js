@@ -1,14 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {link} from './Reveal.module.css'
+import {link, visible, closed} from './Reveal.module.css'
 
-const Reveal = ({label, children, ...props}) => (
-  <details {...props}>
-    <summary className={link}>{label}</summary>
-    {children}
-  </details>
-)
+class Reveal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      open: false
+    }
+  }
+
+  toggle = () => {
+    this.setState({open: !this.state.open})
+  }
+
+  render() {
+    const {label, children, ...props} = this.props
+    const {open} = this.state
+
+    return (
+      <span {...props}>
+        <span onClick={this.toggle} className={link}>
+          {open ? '⯆' : '⯈'} {label}
+        </span>
+        <span className={open ? visible : closed}>{children}</span>
+      </span>
+    )
+  }
+}
 
 Reveal.propTypes = {
   label: PropTypes.string.isRequired,

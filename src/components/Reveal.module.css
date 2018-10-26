@@ -9,8 +9,15 @@
   display: inline;
 }
 
-.link:hover,
-.link:active {
+.link:hover {
   color: dark;
   cursor: pointer;
+}
+
+.visible {
+  display: block;
+}
+
+.closed {
+  display: none;
 }
