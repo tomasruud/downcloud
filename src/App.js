@@ -1,53 +1,32 @@
-import React, { Component } from 'react'
-import {HashRouter as Router, Route} from 'react-router-dom'
+import React from 'react'
+import {connect} from 'react-redux'
+import {HashRouter, Route, Redirect, withRouter} from 'react-router-dom'
 
-import Layout from './Layout';
-import {Login, List} from './views'
+import Layout from './Layout'
+import {Login, Data} from './views'
 
-import Soundcloud from './services/soundcloud'
-import FakeSoundcloud from './services/soundcloud.local'
+const mapState = s => ({
+  hasToken: !!s.accessToken.token
+})
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+const TokenRoute = withRouter(
+  connect(mapState)(({component: Component, hasToken, ...rest}) => (
+    <Route
+      {...rest}
+      render={props =>
+        hasToken ? <Component {...props} /> : <Redirect to="/sign-in" />
+      }
+    />
+  ))
+)
 
-    if (process.env.NODE_ENV === 'production') {
-      this.service = new Soundcloud({
-        redirectUri: 'https://downcloud.ruud.ninja/callback.html',
-        clientId: 'c205c3e2eedb509dff1c1147765b055d'
-      })
-    } else {
-      this.service = new FakeSoundcloud()
-    }
-
-    this.state = {
-      accessToken: null,
-      tracks: [],
-      tracksFetched: false
-    }
-
-    this.fetchTracks = this.fetchTracks.bind(this)
-  }
-
-  async fetchTracks() {
-    const token = await this.service.authenticate()
-    this.setState({ accessToken: token })
-
-    const tracks = await this.service.getAllTracksForUser()
-    this.setState({ tracks: tracks, tracksFetched: true })
-  }
-
-  render() {
-    return (
-      <Router>
-        <Layout>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/tracks" component={List} />
-        </Layout>
-      </Router>
-    )
-  }
-}
+const App = () => (
+  <HashRouter>
+    <Layout>
+      <TokenRoute exact path="/" component={Data} />
+      <Route path="/sign-in" component={Login} />
+    </Layout>
+  </HashRouter>
+)
 
 export default App

@@ -2,17 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {link} from './TextButton.module.css'
 
-const TextButton = ({ tag: Tag, external, children, ...props}) => {
+const TextButton = ({tag: Tag, external, children, ...props}) => {
   let target = {}
 
   if (external) {
     target = {
-      target: "_blank",
-      rel: "noopener noreferrer"
+      target: '_blank',
+      rel: 'noopener noreferrer'
     }
   }
 
-  return <Tag className={link} {...target} {...props}>{children}</Tag>
+  return (
+    <Tag className={link} {...target} {...props}>
+      {children}
+    </Tag>
+  )
 }
 
 TextButton.propTypes = {

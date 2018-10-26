@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { button } from './Button.module.css'
+import {button} from './Button.module.css'
 
-const Button = ({ tag: Tag, children, ...props }) => (
+const Button = ({tag: Tag, children, ...props}) => (
   <Tag className={button} {...props}>
     {children}
   </Tag>

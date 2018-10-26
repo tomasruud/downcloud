@@ -2,26 +2,19 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import {list, element} from './TrackList.module.css'
-import TextButton from './TextButton';
 
-const TrackList = ({tracks}) => (
+const TrackList = ({elements}) => (
   <ul className={list}>
-    {!!tracks &&
-      tracks.map((track, index) => (
-        <li key={index} className={element}>
-          <TextButton href={track.url}>{track.title}</TextButton>
-        </li>
-      ))}
+    {elements.map((e, index) => (
+      <li key={index} className={element}>
+        {e}
+      </li>
+    ))}
   </ul>
 )
 
 TrackList.propTypes = {
-  tracks: PropTypes.arrayOf(
-    PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired
-    })
-  ).isRequired
+  elements: PropTypes.arrayOf(PropTypes.element).isRequired
 }
 
 export default TrackList

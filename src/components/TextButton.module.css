@@ -5,9 +5,16 @@
   color: primary;
   font-weight: bold;
   text-decoration: none;
+
+  border: 0;
+  background: none transparent;
+
+  padding: 0;
+  margin: 0;
 }
 
-.link:hover, .link:active {
+.link:hover,
+.link:active {
   color: dark;
   cursor: pointer;
 }
