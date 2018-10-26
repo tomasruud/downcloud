@@ -3,9 +3,7 @@ node_js:
   - 8
 env:
   - CI=yes
-cache:
-  directories:
-  - "$HOME/.npm"
+cache: npm
 notifications:
   email: false
 install:

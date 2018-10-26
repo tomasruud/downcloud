@@ -12,25 +12,22 @@ export const authenticate = async () => {
 
 export const getTracks = async () => {
   let result = await SC.get('/me/tracks', {
-    limit: 200,
+    limit: 50,
     linked_partitioning: 1
   })
 
   let tracks = []
-  let completed = false
 
-  while (!completed) {
+  while (true) {
     tracks.concat(result.collection)
 
     if (result.next_href) {
       const url = result.next_href.replace('https://api.soundcloud.com', '')
       result = await SC.get(url)
     } else {
-      completed = true
+      return tracks
     }
   }
-
-  return tracks
 }
 
 export const makeDownloadable = (url, token) => url + '?oauth_token=' + token
