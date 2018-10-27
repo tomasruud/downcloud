@@ -62,8 +62,9 @@ class Data extends React.Component {
             >
               download all tracks at once
             </TextButton>
-            . Please note that this feature is experimental and may not work!{' '}
-            <Emoji label="wondering" emoji="🤷‍" />
+      . Please note that this feature is experimental and may not work!{' '}
+            <Emoji label="wondering" emoji="🤷" />
+            {' '}From my personal experience, Microsoft Edge seems to work best.
           </Paragraph>
           <Heading type="h2">
             {tracks.length} track

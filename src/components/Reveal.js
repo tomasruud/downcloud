@@ -22,7 +22,7 @@ class Reveal extends React.Component {
     return (
       <span {...props}>
         <span onClick={this.toggle} className={link}>
-          {open ? '⯆' : '⯈'} {label}
+          {open ? '▼' : '▶'} {label}
         </span>
         <span className={open ? visible : closed}>{children}</span>
       </span>
