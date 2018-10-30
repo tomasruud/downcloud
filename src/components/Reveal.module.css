@@ -1,17 +1,29 @@
 @value colors: "../variables.module.css";
-@value primary, dark from colors;
+@value primary, dark, gray from colors;
 
 .link {
   color: primary;
   font-weight: bold;
   text-decoration: none;
 
-  display: inline;
+  background-color: transparent;
+  border: 0;
+
+  padding: 0;
+  margin: 0;
+
+  display: block;
+
+  line-height: inherit;
 }
 
 .link:hover {
   color: dark;
   cursor: pointer;
+}
+
+.link:active, .link:focus {
+  outline: 2px solid gray;
 }
 
 .visible {

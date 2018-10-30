@@ -15,7 +15,6 @@
   transition: all ease-in-out 0.2s;
 
   margin-right: 10px;
-  margin-left: -0.5rem;
 }
 
 .button:hover {
@@ -24,6 +23,7 @@
 
 .button:active,
 .button:focus {
+  transform: scale(1);
   background-color: transparent;
   color: primary;
   outline: 2px solid primary;

@@ -1,4 +1,5 @@
 {
+  "name": "downcloud",
   "version": "2.5.0",
   "private": true,
   "homepage": "https://downcloud.ruud.ninja",
@@ -6,7 +7,8 @@
     "format": "prettier --write src/**/*",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-scripts test --env=jsdom",
+    "styleguide": "styleguidist server --open"
   },
   "dependencies": {
     "multi-download": "^2.0.1",
@@ -14,7 +16,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
@@ -23,7 +25,8 @@
   },
   "devDependencies": {
     "prettier": "^1.14.3",
-    "react-scripts": "^2.0.5"
+    "react-scripts": "^2.0.5",
+    "react-styleguidist": "^8.0.2"
   },
   "browserslist": [
     ">0.2%",

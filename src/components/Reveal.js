@@ -4,15 +4,12 @@ import PropTypes from 'prop-types'
 import {link, visible, closed} from './Reveal.module.css'
 
 class Reveal extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      open: false
-    }
+  state = {
+    open: false
   }
 
   toggle = () => {
-    this.setState({open: !this.state.open})
+    this.setState(last => ({open: !last.open}))
   }
 
   render() {
@@ -21,9 +18,9 @@ class Reveal extends React.Component {
 
     return (
       <span {...props}>
-        <span onClick={this.toggle} className={link}>
-          {open ? '▼' : '▶'} {label}
-        </span>
+        <button onClick={this.toggle} className={link}>
+          {label} {open ? '🔼' : '🔽'}
+        </button>
         <span className={open ? visible : closed}>{children}</span>
       </span>
     )

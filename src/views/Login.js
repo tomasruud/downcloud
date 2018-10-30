@@ -15,7 +15,7 @@ const Login = ({hasToken, isLoading, onLoginClick}) => {
       {isLoading ? (
         <React.Fragment>
           <Heading type="h1">
-            Signing you in... <Emoji label="investigating" emoji="🕵️‍" />
+            Signing you in <Emoji label="investigating" emoji="🕵️‍" />
           </Heading>
           <Spinner />
         </React.Fragment>

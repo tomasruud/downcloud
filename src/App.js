@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom'
 
 import Layout from './Layout'
-import {Login, Data} from './views'
+import {Login, Home, Tracks} from './views'
 
 const mapState = s => ({
   hasToken: !!s.accessToken.token
@@ -28,8 +28,9 @@ const TokenRoute = withRouter(
 const App = () => (
   <Router>
     <Layout>
-      <TokenRoute exact path="/" component={Data} />
+      <TokenRoute exact path="/" component={Home} />
       <Route path="/sign-in" component={Login} />
+      <TokenRoute path="/tracks" component={Tracks} />
     </Layout>
   </Router>
 )
