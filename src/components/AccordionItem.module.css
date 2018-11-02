@@ -14,7 +14,7 @@
 }
 
 .padding {
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
 }
 
 .title {
@@ -29,7 +29,6 @@
   line-height: inherit;
 
   border: none;
-  border-top: 2px dashed gray;
   background-color: transparent;
 
   cursor: pointer;

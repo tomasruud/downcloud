@@ -60,24 +60,27 @@ class Tracks extends React.Component {
     return (
       <React.Fragment>
         {header}
-        <Paragraph>Click on a track name to start downloading.</Paragraph>
-        <Paragraph>
-          If you're feeling lucky, you can try to{' '}
-          <TextButton
-            onClick={e => {
-              e.preventDefault()
-              multiDownload(tracks.map(t => t.download))
-            }}
-          >
-            download all tracks at once
-          </TextButton>
-          . Please note that this feature is experimental and may not work!{' '}
-          <Emoji label="wondering" emoji="🤷" /> From my personal experience,
-          Microsoft Edge seems to work best.
-        </Paragraph>
-
         <Accordion>
-          <AccordionItem title={'Downloads (' + tracks.length + ')'} open={true}>
+          <AccordionItem
+            title={'Downloads (' + tracks.length + ')'}
+            open={true}
+          >
+            <Paragraph>Click on a track name to start downloading.</Paragraph>
+            <Paragraph>
+              If you're feeling lucky, you can try to{' '}
+              <TextButton
+                onClick={e => {
+                  e.preventDefault()
+                  multiDownload(tracks.map(t => t.download))
+                }}
+              >
+                download all tracks at once
+              </TextButton>
+              . Please note that this feature is experimental and may not work!{' '}
+              <Emoji label="wondering" emoji="🤷" /> From my personal
+              experience, Microsoft Edge seems to work best.
+            </Paragraph>
+
             <TrackList
               elements={tracks.map(track => (
                 <TextButton href={track.download} external>
