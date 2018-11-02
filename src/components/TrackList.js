@@ -14,7 +14,7 @@ const TrackList = ({elements}) => (
 )
 
 TrackList.propTypes = {
-  elements: PropTypes.arrayOf(PropTypes.element).isRequired
+  elements: PropTypes.array.isRequired
 }
 
 export default TrackList

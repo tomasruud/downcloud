@@ -5,7 +5,7 @@ import styles from './AccordionItem.module.css'
 
 class AccordionItem extends React.Component {
   state = {
-    open: false
+    open: this.props.open
   }
 
   toggle = () => {
@@ -15,19 +15,20 @@ class AccordionItem extends React.Component {
   render() {
     const {title, children} = this.props
     const {open} = this.state
-    
+
     return (
       <li className={styles.item}>
-        <button 
-          onClick={this.toggle} 
-          className={styles.title}
-        >{title} {open ? '🔼' : '🔽'}</button>
-        <div 
+        <button onClick={this.toggle} className={styles.title}>
+          {title} {open ? '🔼' : '🔽'}
+        </button>
+        <div
           className={[
-            styles.content, 
+            styles.content,
             open ? styles.visible : styles.hidden
           ].join(' ')}
-        >{children}</div>
+        >
+          {open && children}
+        </div>
       </li>
     )
   }
@@ -36,6 +37,10 @@ class AccordionItem extends React.Component {
 AccordionItem.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
+}
+
+AccordionItem.defaultProps = {
+  open: false
 }
 
 export default AccordionItem

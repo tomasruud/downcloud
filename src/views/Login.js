@@ -22,7 +22,7 @@ const Login = ({hasToken, isLoading, onLoginClick}) => {
       ) : (
         <React.Fragment>
           <Heading type="h1">
-            Downcloud <Emoji label="Music note" emoji="🎵" />
+            Downcloud <Emoji label="Music note" emoji="🎶" />
           </Heading>
           <Paragraph>
             This app helps you download your own Souncloud tracks as original,

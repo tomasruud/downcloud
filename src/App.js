@@ -2,13 +2,13 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {
   MemoryRouter as Router,
-  Route,
   Redirect,
+  Route,
   withRouter
 } from 'react-router-dom'
 
 import Layout from './Layout'
-import {Login, Home, Tracks} from './views'
+import {Home, Login, Tracks, UserData} from './views'
 
 const mapState = s => ({
   hasToken: !!s.accessToken.token
@@ -31,6 +31,7 @@ const App = () => (
       <TokenRoute exact path="/" component={Home} />
       <Route path="/sign-in" component={Login} />
       <TokenRoute path="/tracks" component={Tracks} />
+      <TokenRoute path="/user-data" component={UserData} />
     </Layout>
   </Router>
 )

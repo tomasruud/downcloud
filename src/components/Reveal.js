@@ -5,7 +5,7 @@ import {link, visible, closed} from './Reveal.module.css'
 
 class Reveal extends React.Component {
   state = {
-    open: false
+    open: this.props.open
   }
 
   toggle = () => {
@@ -21,7 +21,7 @@ class Reveal extends React.Component {
         <button onClick={this.toggle} className={link}>
           {label} {open ? '🔼' : '🔽'}
         </button>
-        <span className={open ? visible : closed}>{children}</span>
+        <span className={open ? visible : closed}>{open && children}</span>
       </span>
     )
   }
@@ -29,7 +29,12 @@ class Reveal extends React.Component {
 
 Reveal.propTypes = {
   label: PropTypes.string.isRequired,
-  children: PropTypes.any.isRequired
+  children: PropTypes.any.isRequired,
+  open: PropTypes.bool
+}
+
+Reveal.defaultProps = {
+  open: false
 }
 
 export default Reveal

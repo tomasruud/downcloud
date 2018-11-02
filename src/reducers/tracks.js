@@ -1,12 +1,12 @@
 import {REQUEST_TRACKS, RECEIVE_TRACKS} from '../actions'
 
-const reduce = (
-  state = {
-    collection: [],
-    isFetching: false
-  },
-  action
-) => {
+const initial = {
+  collection: [],
+  isFetching: false,
+  isSet: false
+}
+
+const reduce = (state = initial, action) => {
   switch (action.type) {
     case REQUEST_TRACKS:
       return {
@@ -18,6 +18,7 @@ const reduce = (
       return {
         ...state,
         isFetching: false,
+        isSet: true,
         collection: action.collection
       }
 

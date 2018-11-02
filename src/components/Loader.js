@@ -2,7 +2,7 @@ import React from 'react'
 
 class Loader extends React.Component {
   state = {
-    dots: '', 
+    dots: '',
     reverse: false
   }
 
@@ -24,7 +24,7 @@ class Loader extends React.Component {
     clearInterval(this.timer)
   }
 
-  render () {
+  render() {
     return <span style={{display: 'inline-block'}}>{this.state.dots}</span>
   }
 }

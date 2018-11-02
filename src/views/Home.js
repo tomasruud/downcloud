@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 import {fetchUser} from '../actions'
 import {
@@ -7,16 +8,19 @@ import {
   Paragraph,
   TextButton,
   Heading,
-  Spinner
+  Spinner,
+  TrackList
 } from '../components'
 
 class Home extends React.Component {
-  refresh() {
+  static refresh() {
     window.location.reload()
   }
 
   componentDidMount() {
-    this.props.fetchUser()
+    if (!this.props.userSet) {
+      this.props.fetchUser()
+    }
   }
 
   render() {
@@ -42,11 +46,22 @@ class Home extends React.Component {
         </Heading>
         <Paragraph>
           Select what data you want to view from the menu below. You can also{' '}
-          <TextButton tag="button" onClick={this.refresh}>
+          <TextButton tag="button" onClick={Home.refresh}>
             sign out
           </TextButton>{' '}
           and try again with a different account.
         </Paragraph>
+
+        <TrackList
+          elements={[
+            <TextButton tag={Link} to="/tracks">
+              Tracks
+            </TextButton>,
+            <TextButton tag={Link} to="/user-data">
+              User data
+            </TextButton>
+          ]}
+        />
       </React.Fragment>
     )
   }
@@ -54,7 +69,8 @@ class Home extends React.Component {
 
 const mapState = state => ({
   user: state.user.entity,
-  userLoading: state.user.isFetching
+  userLoading: state.user.isFetching,
+  userSet: state.user.isSet
 })
 
 const mapDispatch = dispatch => ({

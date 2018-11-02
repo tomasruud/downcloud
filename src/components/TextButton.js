@@ -20,7 +20,7 @@ const TextButton = ({tag: Tag, external, children, ...props}) => {
 }
 
 TextButton.propTypes = {
-  tag: PropTypes.string,
+  tag: PropTypes.any,
   external: PropTypes.bool,
   children: PropTypes.any.isRequired
 }

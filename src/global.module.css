@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 @value colors: "./variables.module.css";
 @value light, dark, primary from colors;
-
-@import url('https://fonts.googleapis.com/css?family=Lato');
 
 ::selection {
   background-color: primary;
@@ -16,4 +16,5 @@ html {
 body {
   color: dark;
   font-family: 'Lato', sans-serif;
+  overflow-y: scroll;
 }

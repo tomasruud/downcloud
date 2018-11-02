@@ -1,21 +1,26 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import multiDownload from 'multi-download'
+import {Link} from 'react-router-dom'
 
-import {requestTracks} from '../actions';
+import {fetchTracks} from '../actions'
 import {
+  Accordion,
+  AccordionItem,
   Emoji,
-  TrackList,
-  Paragraph,
-  TextButton,
   Heading,
-  Button,
-  Spinner
+  Paragraph,
+  Raw,
+  Spinner,
+  TextButton,
+  TrackList
 } from '../components'
 
 class Tracks extends React.Component {
   componentDidMount() {
-    this.props.fetchTracks()
+    if (!this.props.tracksSet) {
+      this.props.fetchTracks()
+    }
   }
 
   render() {
@@ -23,27 +28,39 @@ class Tracks extends React.Component {
 
     if (isLoading) {
       return (
-        <Spinner />
+        <React.Fragment>
+          <Heading type="h1">
+            Loading your tracks <Emoji label="hourglass" emoji="⏳" />
+          </Heading>
+          <Spinner />
+        </React.Fragment>
       )
     }
+
+    const header = (
+      <React.Fragment>
+        <TextButton tag={Link} to="/" style={{marginBottom: '1rem'}}>
+          <Emoji label="Back" emoji="◀️" /> Go back
+        </TextButton>
+        <Heading type="h1">Your tracks</Heading>
+      </React.Fragment>
+    )
 
     if (!tracks || tracks.length < 1) {
       return (
         <React.Fragment>
-          <Heading type="h1">Ouch!</Heading>
+          {header}
           <Paragraph>
             Could not find any tracks <Emoji label="sad" emoji="😢" />
           </Paragraph>
-          <Button onClick={this.refresh}>Try again</Button> (or refresh the page)
         </React.Fragment>
       )
     }
 
     return (
       <React.Fragment>
-        <Paragraph>
-          Click on a track name to start downloading.
-        </Paragraph>
+        {header}
+        <Paragraph>Click on a track name to start downloading.</Paragraph>
         <Paragraph>
           If you're feeling lucky, you can try to{' '}
           <TextButton
@@ -53,34 +70,43 @@ class Tracks extends React.Component {
             }}
           >
             download all tracks at once
-            </TextButton>
+          </TextButton>
           . Please note that this feature is experimental and may not work!{' '}
-          <Emoji label="wondering" emoji="🤷" />
-          {' '}From my personal experience, Microsoft Edge seems to work best.
-          </Paragraph>
-        <Heading type="h2">
-          {tracks.length} track
-            {tracks.length !== 1 && 's'}
-        </Heading>
-        <TrackList
-          elements={tracks.map(track => (
-            <TextButton href={track.download} external>
-              {track.title}
-            </TextButton>
-          ))}
-        />
+          <Emoji label="wondering" emoji="🤷" /> From my personal experience,
+          Microsoft Edge seems to work best.
+        </Paragraph>
+
+        <Accordion>
+          <AccordionItem title={'Downloads (' + tracks.length + ')'} open={true}>
+            <TrackList
+              elements={tracks.map(track => (
+                <TextButton href={track.download} external>
+                  {track.title}
+                </TextButton>
+              ))}
+            />
+          </AccordionItem>
+
+          <AccordionItem title="Raw data">
+            <Raw>{tracks}</Raw>
+          </AccordionItem>
+        </Accordion>
       </React.Fragment>
     )
   }
-} 
+}
 
 const mapState = state => ({
   tracks: state.tracks.collection,
-  isLoading: state.tracks.isFetching
+  isLoading: state.tracks.isFetching,
+  tracksSet: state.tracks.isSet
 })
 
 const mapDispatch = dispatch => ({
-  fetchTracks: () => dispatch(requestTracks())
+  fetchTracks: () => dispatch(fetchTracks())
 })
 
-export default connect(mapState, mapDispatch)(Tracks)
+export default connect(
+  mapState,
+  mapDispatch
+)(Tracks)

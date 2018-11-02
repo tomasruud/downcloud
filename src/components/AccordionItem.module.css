@@ -10,11 +10,11 @@
 }
 
 .item {
-  margin-block-end: .5rem;
+  margin-block-end: 0.5rem;
 }
 
 .padding {
-  padding: .5rem 0;
+  padding: 0.5rem 0;
 }
 
 .title {
@@ -29,8 +29,7 @@
   line-height: inherit;
 
   border: none;
-  border-bottom: 2px solid lightTint;
-  
+  border-top: 2px dashed gray;
   background-color: transparent;
 
   cursor: pointer;

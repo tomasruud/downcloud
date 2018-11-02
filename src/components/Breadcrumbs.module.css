@@ -1,0 +1,29 @@
+@value colors: "../variables.module.css";
+
+@value lightTint, gray from colors;
+
+.wrapper {
+  list-style-type: none;
+  display: block;
+
+  border-radius: 3px;
+
+  background-color: lightTint;
+
+  margin: 0 0 1rem 0;
+  padding: 0.5rem 0.75rem;
+}
+
+.item {
+  display: inline-block;
+}
+
+.item:after {
+  content: '/';
+  padding: 0 0.5rem;
+  color: gray;
+}
+
+.item:last-child:after {
+  content: '';
+}

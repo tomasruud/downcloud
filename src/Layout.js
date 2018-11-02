@@ -1,12 +1,12 @@
 import React from 'react'
 
 import info from '../package.json'
-import {Paragraph, Emoji, TextButton, Reveal} from './components'
-import {element, container, footer} from './Layout.module.css'
+import {Emoji, Paragraph, Reveal, TextButton} from './components'
+import styles from './Layout.module.css'
 import news from './news'
 
 const Footer = () => (
-  <footer className={footer}>
+  <footer className={styles.footer}>
     <Paragraph>
       <TextButton href="https://soundcloud.com/autodrums" external={true}>
         @autodrums
@@ -20,7 +20,7 @@ const Footer = () => (
     </Paragraph>
 
     <Reveal label="News">
-      {news.map((n,i) => (
+      {news.map((n, i) => (
         <React.Fragment key={i}>
           <strong>{n.date}</strong>
           <Paragraph>{n.content}</Paragraph>
@@ -29,26 +29,28 @@ const Footer = () => (
     </Reveal>
     <Reveal label="Legal stuff">
       <Paragraph>
-        This app uses cookies for Google Analytics. By using Downcloud you're ok with that. None of your data will be stored anywhere, everything is done in your browser session and destroyed once you exit/refresh the site.
+        This app uses cookies for Google Analytics. By using Downcloud you're ok
+        with that. None of your data will be stored anywhere, everything is done
+        in your browser session and destroyed once you exit/refresh the site.
       </Paragraph>
     </Reveal>
-    <Paragraph style={{ marginBottom: 0 }}>
+    <Paragraph style={{marginBottom: 0}}>
       <TextButton
         href="https://github.com/tomasruud/downcloud/issues"
         external={true}
       >
         Report issues
       </TextButton>{' '}
-      <Emoji label="bug" emoji="🐛" /> 
+      <Emoji label="bug" emoji="🐛" />
       <br />
       Version {info.version}
     </Paragraph>
   </footer>
 )
 
-const Layout = ({children}) => (
-  <div className={container}>
-    <main className={element}>{children}</main>
+const Layout = ({breadcrumbs, children}) => (
+  <div className={styles.container}>
+    <main className={styles.element}>{children}</main>
     <Footer />
   </div>
 )

@@ -1,7 +1,3 @@
 ```js
-<TrackList elements={[
-  'Hello',
-  'From',
-  'Example'
-]} />
+<TrackList elements={['Hello', 'From', 'Example']} />
 ```

@@ -1,12 +1,12 @@
 import {REQUEST_USER, RECEIVE_USER} from '../actions'
 
-const reduce = (
-  state = {
-    entity: {},
-    isFetching: false
-  },
-  action
-) => {
+const initial = {
+  entity: {},
+  isFetching: false,
+  isSet: false
+}
+
+const reduce = (state = initial, action) => {
   switch (action.type) {
     case REQUEST_USER:
       return {
@@ -18,7 +18,8 @@ const reduce = (
       return {
         ...state,
         isFetching: false,
-        entity: action.user
+        entity: action.user,
+        isSet: true
       }
 
     default:

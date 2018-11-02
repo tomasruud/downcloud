@@ -1,6 +1,6 @@
 {
   "name": "downcloud",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
   "homepage": "https://downcloud.ruud.ninja",
   "scripts": {
@@ -11,6 +11,8 @@
     "styleguide": "styleguidist server --open"
   },
   "dependencies": {
+    "flat": "^4.1.0",
+    "highlight.js": "^9.13.1",
     "multi-download": "^2.0.1",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.2",
