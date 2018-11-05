@@ -5,16 +5,17 @@ import styles from './AccordionItem.module.css'
 
 class AccordionItem extends React.Component {
   state = {
-    open: this.props.open
+    open: this.props.open,
+    rendered: this.props.open
   }
 
   toggle = () => {
-    this.setState(previous => ({open: !previous.open}))
+    this.setState(previous => ({open: !previous.open, rendered: true}))
   }
 
   render() {
     const {title, children} = this.props
-    const {open} = this.state
+    const {rendered, open} = this.state
 
     return (
       <li className={styles.item}>
@@ -27,7 +28,7 @@ class AccordionItem extends React.Component {
             open ? styles.visible : styles.hidden
           ].join(' ')}
         >
-          {open && children}
+          {rendered && children}
         </div>
       </li>
     )

@@ -5,23 +5,24 @@ import {link, visible, closed} from './Reveal.module.css'
 
 class Reveal extends React.Component {
   state = {
-    open: this.props.open
+    open: this.props.open,
+    rendered: this.props.open
   }
 
   toggle = () => {
-    this.setState(last => ({open: !last.open}))
+    this.setState(last => ({open: !last.open, rendered: true}))
   }
 
   render() {
     const {label, children, ...props} = this.props
-    const {open} = this.state
+    const {rendered, open} = this.state
 
     return (
       <span {...props}>
         <button onClick={this.toggle} className={link}>
           {label} {open ? '🔼' : '🔽'}
         </button>
-        <span className={open ? visible : closed}>{open && children}</span>
+        <span className={open ? visible : closed}>{rendered && children}</span>
       </span>
     )
   }
