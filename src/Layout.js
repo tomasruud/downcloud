@@ -8,6 +8,13 @@ import news from './news'
 const Footer = () => (
   <footer className={styles.footer}>
     <Paragraph>
+      <TextButton
+        href="https://buymeacoff.ee/tomas"
+        external={true}
+      >Buy me a slush? <Emoji label="ice" emoji="🍧"/></TextButton>
+    </Paragraph>
+
+    <Paragraph>
       <TextButton href="https://soundcloud.com/autodrums" external={true}>
         @autodrums
       </TextButton>{' '}
