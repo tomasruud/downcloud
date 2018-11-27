@@ -8,10 +8,9 @@ import news from './news'
 const Footer = () => (
   <footer className={styles.footer}>
     <Paragraph>
-      <TextButton
-        href="https://buymeacoff.ee/tomas"
-        external={true}
-      >Buy me a slush? <Emoji label="ice" emoji="🍧"/></TextButton>
+      <TextButton href="https://buymeacoff.ee/tomas" external={true}>
+        Buy me a slush? <Emoji label="ice" emoji="🍧" />
+      </TextButton>
     </Paragraph>
 
     <Paragraph>
@@ -36,9 +35,8 @@ const Footer = () => (
     </Reveal>
     <Reveal label="Legal stuff">
       <Paragraph>
-        This app uses cookies for Google Analytics. By using Downcloud you're ok
-        with that. None of your data will be stored anywhere, everything is done
-        in your browser session and destroyed once you exit/refresh the site.
+        None of your data will be stored anywhere, everything is done in your
+        browser session and destroyed once you exit/refresh the site.
       </Paragraph>
     </Reveal>
     <Paragraph style={{marginBottom: 0}}>
