@@ -1,6 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './Raw.module.css'
+import styled from 'styled-components'
+
+const Pre = styled.pre`
+  font-size: 0.8rem;
+`
 
 class Raw extends React.Component {
   async componentDidMount() {
@@ -17,7 +21,7 @@ class Raw extends React.Component {
     const lang = await import('highlight.js/lib/languages/json')
 
     hl.registerLanguage('json', lang.default)
-    this.el.querySelectorAll('pre code').forEach(hl.highlightBlock)
+    hl.highlightBlock(this.el)
   }
 
   setEl = el => {
@@ -28,9 +32,9 @@ class Raw extends React.Component {
     const {children} = this.props
 
     return (
-      <pre ref={this.setEl} className={styles.raw}>
-        <code>{JSON.stringify(children, null, 2)}</code>
-      </pre>
+      <Pre>
+        <code ref={this.setEl}>{JSON.stringify(children, null, 2)}</code>
+      </Pre>
     )
   }
 }

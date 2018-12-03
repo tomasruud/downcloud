@@ -1,14 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import {h1, h2} from './Heading.module.css'
+const H1 = styled.h1`
+  font-size: 1.6rem;
+`
 
-const classes = {h1, h2}
+const H2 = styled.h2`
+  font-size: 1.3rem;
+`
 
-const Heading = ({children, type: Type, ...props}) => (
-  <Type className={classes[Type]} {...props}>
+const H3 = styled.h3`
+  font-size: 1.15rem;
+`
+
+const map = {
+  'h1': H1,
+  'h2': H2,
+  'h3': H3
+}
+
+const Heading = ({children, type, ...props}) => (
+  <H1 as={map[type]} {...props}>
     {children}
-  </Type>
+  </H1>
 )
 
 Heading.propTypes = {

@@ -1,7 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import {link, visible, closed} from './Reveal.module.css'
+const Button = styled.button`
+  color: ${props => props.theme.primary};
+  font-weight: bold;
+  text-decoration: none;
+
+  background-color: transparent;
+  border: 0;
+
+  padding: 0;
+  margin: 0;
+
+  display: block;
+
+  line-height: inherit;
+
+  :hover {
+    color: ${props => props.theme.dark};
+    cursor: pointer;
+  }
+
+  :active,
+  :focus {
+    outline: 2px solid ${props => props.theme.gray};
+  }
+`
+
+const Content = styled.span`
+  display: ${props => (props.visible ? 'block' : 'none')};
+`
 
 class Reveal extends React.Component {
   state = {
@@ -19,10 +48,10 @@ class Reveal extends React.Component {
 
     return (
       <span {...props}>
-        <button onClick={this.toggle} className={link}>
+        <Button onClick={this.toggle}>
           {label} {open ? '🔼' : '🔽'}
-        </button>
-        <span className={open ? visible : closed}>{rendered && children}</span>
+        </Button>
+        <Content visible={open}>{rendered && children}</Content>
       </span>
     )
   }

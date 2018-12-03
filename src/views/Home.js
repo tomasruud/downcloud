@@ -30,9 +30,9 @@ class Home extends React.Component {
       return (
         <React.Fragment>
           <Heading type="h1">
-            Collecting info <Emoji label="spy" emoji="🔍" />
+            Collecting info <Emoji label="spy" emoji="🔍"/>
           </Heading>
-          <Spinner />
+          <Spinner/>
         </React.Fragment>
       )
     }
@@ -42,7 +42,7 @@ class Home extends React.Component {
         <Heading type="h1">
           Hey
           {!!user.permalink && ' ' + user.permalink}!{' '}
-          <Emoji label="waving" emoji="👋" />
+          <Emoji label="waving" emoji="👋"/>
         </Heading>
         <Paragraph>
           Select what data you want to view from the menu below. You can also{' '}
@@ -52,16 +52,14 @@ class Home extends React.Component {
           and try again with a different account.
         </Paragraph>
 
-        <TrackList
-          elements={[
-            <TextButton tag={Link} to="/tracks">
-              Tracks
-            </TextButton>,
-            <TextButton tag={Link} to="/user-data">
-              User data
-            </TextButton>
-          ]}
-        />
+        <TrackList>
+          <TextButton tag={Link} to="/tracks">
+            Tracks
+          </TextButton>
+          <TextButton tag={Link} to="/user-data">
+            User data
+          </TextButton>
+        </TrackList>
       </React.Fragment>
     )
   }

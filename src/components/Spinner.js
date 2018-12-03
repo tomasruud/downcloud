@@ -1,10 +1,18 @@
 import React from 'react'
 import 'spinkit/css/spinners/2-double-bounce.css'
-import {wrapper, ball} from './Spinner.module.css'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+  margin: 0;
+`
+
+const Ball = styled.div`
+  background-color: ${props => props.theme.primary} !important;
+`
 
 export default () => (
-  <div className={['sk-double-bounce', wrapper].join(' ')}>
-    <div className={['sk-child', ball].join(' ')} />
-    <div className={['sk-child sk-double-bounce2', ball].join(' ')} />
-  </div>
+  <Wrapper className="sk-double-bounce">
+    <Ball className="sk-child" />
+    <Ball className="sk-child sk-double-bounce2" />
+  </Wrapper>
 )

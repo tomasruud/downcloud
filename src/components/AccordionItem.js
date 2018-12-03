@@ -1,7 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import styles from './AccordionItem.module.css'
+const Item = styled.li`
+  margin-block-end: 0.5rem;
+`
+
+const Button = styled.button`
+  padding: 0.25rem 0;
+
+  display: block;
+  width: 100%;
+
+  text-align: left;
+  font-weight: bold;
+  color: ${props => props.theme.primary};
+  line-height: inherit;
+
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
+
+  :hover {
+    color: ${props => props.theme.dark};
+  }
+
+  :active,
+  :focus {
+    outline-color: ${props => props.theme.gray};
+  }
+`
+
+const Content = styled.div`
+  padding: 0.25rem 0;
+
+  display: ${props => props.open ? 'block' : 'none'};
+`
 
 class AccordionItem extends React.Component {
   state = {
@@ -18,19 +53,14 @@ class AccordionItem extends React.Component {
     const {rendered, open} = this.state
 
     return (
-      <li className={styles.item}>
-        <button onClick={this.toggle} className={styles.title}>
+      <Item>
+        <Button onClick={this.toggle}>
           {title} {open ? '🔼' : '🔽'}
-        </button>
-        <div
-          className={[
-            styles.content,
-            open ? styles.visible : styles.hidden
-          ].join(' ')}
-        >
+        </Button>
+        <Content open={open}>
           {rendered && children}
-        </div>
-      </li>
+        </Content>
+      </Item>
     )
   }
 }

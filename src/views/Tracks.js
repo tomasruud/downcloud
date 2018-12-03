@@ -81,13 +81,13 @@ class Tracks extends React.Component {
               experience, Microsoft Edge seems to work best.
             </Paragraph>
 
-            <TrackList
-              elements={tracks.map(track => (
-                <TextButton href={track.download} external>
-                  {track.title}
+            <TrackList>
+              {tracks.map((t, i) => (
+                <TextButton key={i} href={t.download} external>
+                  {t.title}
                 </TextButton>
               ))}
-            />
+            </TrackList>
           </AccordionItem>
 
           <AccordionItem title="Raw data">

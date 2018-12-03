@@ -1,7 +1,8 @@
 import React from 'react'
-import {Emoji, Heading, Raw, Spinner, TextButton} from '../components'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+
+import {Emoji, Heading, Raw, Spinner, TextButton} from '../components'
 import {fetchUser} from '../actions'
 
 class UserData extends React.Component {

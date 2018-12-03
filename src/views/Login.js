@@ -10,30 +10,30 @@ const Login = ({hasToken, isLoading, onLoginClick}) => {
     return <Redirect to="/" />
   }
 
+  if (isLoading) {
+    return (
+      <React.Fragment>
+        <Heading type="h1">
+          Signing you in <Emoji label="investigating" emoji="🕵️‍" />
+        </Heading>
+        <Spinner />
+      </React.Fragment>
+    )
+  }
+
   return (
     <React.Fragment>
-      {isLoading ? (
-        <React.Fragment>
-          <Heading type="h1">
-            Signing you in <Emoji label="investigating" emoji="🕵️‍" />
-          </Heading>
-          <Spinner />
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Heading type="h1">
-            Downcloud <Emoji label="Music note" emoji="🎶" />
-          </Heading>
-          <Paragraph>
-            This app helps you download your own Souncloud tracks as original,
-            uncompressed files.
-          </Paragraph>
-          <Button onClick={onLoginClick}>
-            <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
-          </Button>{' '}
-          to get started
-        </React.Fragment>
-      )}
+      <Heading type="h1">
+        Downcloud <Emoji label="Music note" emoji="🎶" />
+      </Heading>
+      <Paragraph>
+        This app helps you download your own Souncloud tracks as original,
+        uncompressed files.
+      </Paragraph>
+      <Button onClick={onLoginClick}>
+        <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
+      </Button>{' '}
+      to get started
     </React.Fragment>
   )
 }

@@ -1,12 +1,9 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './Paragraph.module.css'
+import styled from 'styled-components'
 
-const Paragraph = ({children, ...props}) => (
-  <p className={styles.paragraph} {...props}>
-    {children}
-  </p>
-)
+const Paragraph = styled.p`
+  margin: 0 0 1.2rem;
+`
 
 Paragraph.propTypes = {
   children: PropTypes.node.isRequired

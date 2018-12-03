@@ -1,8 +1,10 @@
 module.exports = {
   require: [
-    'normalize.css',
-    './src/global.module.css'
+    'normalize.css'
   ],
+  styleguideComponents: {
+    Wrapper: require('path').join(__dirname, 'styleguide/ThemeWrapper')
+  },
   skipComponentsWithoutExample: true,
   usageMode: 'expand',
   dangerouslyUpdateWebpackConfig: (c) => {

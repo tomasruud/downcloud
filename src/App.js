@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {ThemeProvider} from 'styled-components'
 import {
   MemoryRouter as Router,
   Redirect,
@@ -9,6 +10,8 @@ import {
 
 import Layout from './Layout'
 import {Home, Login, Tracks, UserData} from './views'
+import GlobalStyle from './GlobalStyle'
+import theme from './theme'
 
 const mapState = s => ({
   hasToken: !!s.accessToken.token
@@ -25,15 +28,16 @@ const TokenRoute = withRouter(
   ))
 )
 
-const App = () => (
-  <Router>
-    <Layout>
-      <TokenRoute exact path="/" component={Home} />
-      <Route path="/sign-in" component={Login} />
-      <TokenRoute path="/tracks" component={Tracks} />
-      <TokenRoute path="/user-data" component={UserData} />
-    </Layout>
-  </Router>
+export default () => (
+  <ThemeProvider theme={theme}>
+    <Router>
+      <Layout>
+        <GlobalStyle />
+        <TokenRoute exact path="/" component={Home} />
+        <Route path="/sign-in" component={Login} />
+        <TokenRoute path="/tracks" component={Tracks} />
+        <TokenRoute path="/user-data" component={UserData} />
+      </Layout>
+    </Router>
+  </ThemeProvider>
 )
-
-export default App

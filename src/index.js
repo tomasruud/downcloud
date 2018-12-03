@@ -6,7 +6,6 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 
 import 'normalize.css'
-import './global.module.css'
 
 import App from './App'
 

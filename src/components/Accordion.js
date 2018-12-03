@@ -1,14 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-import styles from './Accordion.module.css'
+const Accordion = styled.ul`
+  list-style-type: none;
 
-const Accordion = ({children}) => (
-  <ul className={styles.accordion}>{children}</ul>
-)
-
-Accordion.propTypes = {
-  children: PropTypes.node.isRequired
-}
+  padding: 0;
+  margin: 0;
+`
 
 export default Accordion
