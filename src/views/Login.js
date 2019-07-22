@@ -1,50 +1,45 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
 
-import {Button, Emoji, Paragraph, Heading, Spinner} from '../components'
-import {fetchAccessToken} from '../actions'
+import {session as sessionActions} from '../actions'
+import {session} from '../selectors'
+import {Button, Emoji, Heading, Paragraph, Spinner} from '../components'
 
-const Login = ({hasToken, isLoading, onLoginClick}) => {
-  if (hasToken) {
-    return <Redirect to="/" />
+const Login = ({isLoading, onLoginClick}) => {
+  if (isLoading) {
+    return (
+      <React.Fragment>
+        <Heading type="h1">
+          Signing you in <Emoji label="investigating" emoji="🕵️‍" />
+        </Heading>
+        <Spinner />
+      </React.Fragment>
+    )
   }
 
   return (
     <React.Fragment>
-      {isLoading ? (
-        <React.Fragment>
-          <Heading type="h1">
-            Signing you in <Emoji label="investigating" emoji="🕵️‍" />
-          </Heading>
-          <Spinner />
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Heading type="h1">
-            Downcloud <Emoji label="Music note" emoji="🎶" />
-          </Heading>
-          <Paragraph>
-            This app helps you download your own Souncloud tracks as original,
-            uncompressed files.
-          </Paragraph>
-          <Button onClick={onLoginClick}>
-            <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
-          </Button>{' '}
-          to get started
-        </React.Fragment>
-      )}
+      <Heading type="h1">
+        Downcloud <Emoji label="Music note" emoji="🎶" />
+      </Heading>
+      <Paragraph>
+        This app helps you download your own Souncloud tracks as original,
+        uncompressed files.
+      </Paragraph>
+      <Button onClick={onLoginClick}>
+        <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
+      </Button>{' '}
+      to get started
     </React.Fragment>
   )
 }
 
 const mapState = state => ({
-  hasToken: !!state.accessToken.token,
-  isLoading: state.accessToken.isFetching
+  isLoading: session.loading(state)
 })
 
 const mapDispatch = dispatch => ({
-  onLoginClick: () => dispatch(fetchAccessToken())
+  onLoginClick: () => dispatch(sessionActions.authenticate())
 })
 
 export default connect(

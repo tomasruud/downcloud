@@ -1,8 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {link} from './TextButton.module.css'
+import styled from 'styled-components'
 
-const TextButton = ({tag: Tag, external, children, ...props}) => {
+const Link = styled.a`
+  color: ${props => props.theme.primary};
+  font-weight: bold;
+  text-decoration: none;
+
+  border: 0;
+  background: none transparent;
+
+  padding: 0;
+  margin: 0;
+
+  :hover,
+  :active {
+    color: ${props => props.theme.dark};
+    cursor: pointer;
+  }
+`
+
+const TextButton = ({as, external, children, ...props}) => {
   let target = {}
 
   if (external) {
@@ -13,21 +31,21 @@ const TextButton = ({tag: Tag, external, children, ...props}) => {
   }
 
   return (
-    <Tag className={link} {...target} {...props}>
+    <Link as={as} {...target} {...props}>
       {children}
-    </Tag>
+    </Link>
   )
 }
 
 TextButton.propTypes = {
-  tag: PropTypes.any,
+  as: PropTypes.any,
   external: PropTypes.bool,
   children: PropTypes.any.isRequired
 }
 
 TextButton.defaultProps = {
   external: false,
-  tag: 'a'
+  as: 'a'
 }
 
 export default TextButton

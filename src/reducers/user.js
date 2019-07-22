@@ -1,30 +1,26 @@
-import {REQUEST_USER, RECEIVE_USER} from '../actions'
+import {combineReducers} from 'redux'
 
-const initial = {
-  entity: {},
-  isFetching: false,
-  isSet: false
-}
-
-const reduce = (state = initial, action) => {
-  switch (action.type) {
-    case REQUEST_USER:
-      return {
-        ...state,
-        isFetching: true
-      }
-
-    case RECEIVE_USER:
-      return {
-        ...state,
-        isFetching: false,
-        entity: action.user,
-        isSet: true
-      }
-
-    default:
-      return state
+const loading = (state = false, action) => {
+  if (action.type === 'REQUEST_USER') {
+    return true
   }
+
+  if (action.type === 'RECEIVE_USER') {
+    return false
+  }
+
+  return state
 }
 
-export default reduce
+const user = (state = null, action) => {
+  if (action.type === 'RECEIVE_USER') {
+    return action.user
+  }
+
+  return state
+}
+
+export default combineReducers({
+  loading,
+  user
+})

@@ -1,18 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
-import {createStore, applyMiddleware, compose} from 'redux'
-import thunk from 'redux-thunk'
-import reducer from './reducers'
-
-import 'normalize.css'
-import './global.module.css'
 
 import App from './App'
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
-const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
+import store from './store'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,3 +11,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('downcloud')
 )
+
+if (module.hot) {
+  module.hot.accept()
+}
