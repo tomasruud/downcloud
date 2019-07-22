@@ -1,3 +1,0 @@
-```js
-<TextButton>Example</TextButton>
-```

@@ -15,9 +15,9 @@ const H3 = styled.h3`
 `
 
 const map = {
-  'h1': H1,
-  'h2': H2,
-  'h3': H3
+  h1: H1,
+  h2: H2,
+  h3: H3
 }
 
 const Heading = ({children, type, ...props}) => (

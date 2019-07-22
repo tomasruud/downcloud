@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux'
 
-import accessToken from './auth'
+import router from './router'
+import session from './session'
 import tracks from './tracks'
 import user from './user'
 
 export default combineReducers({
-  accessToken,
+  router,
+  session,
   tracks,
   user
 })

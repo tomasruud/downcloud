@@ -1,8 +1,8 @@
 const SC = require('soundcloud')
 
 SC.initialize({
-  client_id: 'c205c3e2eedb509dff1c1147765b055d',
-  redirect_uri: 'https://downcloud.ruud.ninja/callback.html'
+  client_id: process.env.REACT_APP_SC_CLIENT_ID,
+  redirect_uri: process.env.REACT_APP_SC_REDIRECT_URI
 })
 
 export const authenticate = async () => {

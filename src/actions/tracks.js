@@ -1,26 +1,20 @@
 import {Soundcloud} from '../services'
+import {session} from '../selectors'
 
-export const REQUEST_TRACKS = 'REQUEST_TRACKS'
-export const requestTracks = () => ({
-  type: REQUEST_TRACKS
-})
+export const get = () => async (dispatch, getState) => {
+  dispatch({type: 'REQUEST_TRACKS'})
 
-export const RECEIVE_TRACKS = 'RECEIVE_TRACKS'
-export const receiveTracks = tracks => ({
-  type: RECEIVE_TRACKS,
-  collection: tracks
-})
-
-export const fetchTracks = () => async (dispatch, getState) => {
-  dispatch(requestTracks())
   const tracks = await Soundcloud.getTracks()
 
-  const token = getState().accessToken.token
+  const token = session.token(getState())
 
   const modified = tracks.map(track => ({
     ...track,
     download: Soundcloud.makeDownloadable(track.download_url, token)
   }))
 
-  return dispatch(receiveTracks(modified))
+  return dispatch({
+    type: 'RECEIVE_TRACKS',
+    tracks: modified
+  })
 }

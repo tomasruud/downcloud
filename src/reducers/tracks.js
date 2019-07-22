@@ -1,30 +1,26 @@
-import {REQUEST_TRACKS, RECEIVE_TRACKS} from '../actions'
+import {combineReducers} from 'redux'
 
-const initial = {
-  collection: [],
-  isFetching: false,
-  isSet: false
-}
-
-const reduce = (state = initial, action) => {
-  switch (action.type) {
-    case REQUEST_TRACKS:
-      return {
-        ...state,
-        isFetching: true
-      }
-
-    case RECEIVE_TRACKS:
-      return {
-        ...state,
-        isFetching: false,
-        isSet: true,
-        collection: action.collection
-      }
-
-    default:
-      return state
+const loading = (state = false, action) => {
+  if (action.type === 'REQUEST_TRACKS') {
+    return true
   }
+
+  if (action.type === 'RECEIVE_TRACKS') {
+    return false
+  }
+
+  return state
 }
 
-export default reduce
+const tracks = (state = null, action) => {
+  if (action.type === 'RECEIVE_TRACKS') {
+    return action.tracks
+  }
+
+  return state
+}
+
+export default combineReducers({
+  loading,
+  tracks
+})

@@ -1,15 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Redirect} from 'react-router-dom'
 
-import {Button, Emoji, Paragraph, Heading, Spinner} from '../components'
-import {fetchAccessToken} from '../actions'
+import {session as sessionActions} from '../actions'
+import {session} from '../selectors'
+import {Button, Emoji, Heading, Paragraph, Spinner} from '../components'
 
-const Login = ({hasToken, isLoading, onLoginClick}) => {
-  if (hasToken) {
-    return <Redirect to="/" />
-  }
-
+const Login = ({isLoading, onLoginClick}) => {
   if (isLoading) {
     return (
       <React.Fragment>
@@ -39,12 +35,11 @@ const Login = ({hasToken, isLoading, onLoginClick}) => {
 }
 
 const mapState = state => ({
-  hasToken: !!state.accessToken.token,
-  isLoading: state.accessToken.isFetching
+  isLoading: session.loading(state)
 })
 
 const mapDispatch = dispatch => ({
-  onLoginClick: () => dispatch(fetchAccessToken())
+  onLoginClick: () => dispatch(sessionActions.authenticate())
 })
 
 export default connect(

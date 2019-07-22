@@ -12,7 +12,7 @@ const Link = styled.a`
 
   padding: 0;
   margin: 0;
-  
+
   :hover,
   :active {
     color: ${props => props.theme.dark};
@@ -20,7 +20,7 @@ const Link = styled.a`
   }
 `
 
-const TextButton = ({tag, external, children, ...props}) => {
+const TextButton = ({as, external, children, ...props}) => {
   let target = {}
 
   if (external) {
@@ -31,21 +31,21 @@ const TextButton = ({tag, external, children, ...props}) => {
   }
 
   return (
-    <Link as={tag} {...target} {...props}>
+    <Link as={as} {...target} {...props}>
       {children}
     </Link>
   )
 }
 
 TextButton.propTypes = {
-  tag: PropTypes.any,
+  as: PropTypes.any,
   external: PropTypes.bool,
   children: PropTypes.any.isRequired
 }
 
 TextButton.defaultProps = {
   external: false,
-  tag: 'a'
+  as: 'a'
 }
 
 export default TextButton

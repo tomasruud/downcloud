@@ -1,51 +1,46 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useLayoutEffect} from 'react'
 import {connect} from 'react-redux'
 
-import {Emoji, Heading, Raw, Spinner, TextButton} from '../components'
-import {fetchUser} from '../actions'
+import {user} from '../selectors'
+import {user as userActions} from '../actions'
+import {Emoji, Heading, Link, Raw, Spinner, TextButton} from '../components'
 
-class UserData extends React.Component {
-  componentDidMount() {
-    if (!this.props.isSet && !this.props.isFetching) {
-      this.props.fetchUser()
+const UserData = ({isLoading, user, fetchUser}) => {
+  useLayoutEffect(() => {
+    if (!user) {
+      fetchUser()
     }
-  }
+  }, [user, fetchUser])
 
-  render() {
-    const {user, isFetching} = this.props
-
-    if (isFetching) {
-      return (
-        <React.Fragment>
-          <Heading type="h1">
-            Collecting info <Emoji label="spy" emoji="🔍" />
-          </Heading>
-          <Spinner />
-        </React.Fragment>
-      )
-    }
-
+  if (isLoading) {
     return (
       <React.Fragment>
-        <TextButton tag={Link} to="/" style={{marginBottom: '1rem'}}>
-          <Emoji label="Back" emoji="◀️" /> Go back
-        </TextButton>
-        <Heading type="h1">Your user data</Heading>
-        <Raw>{user}</Raw>
+        <Heading type="h1">
+          Collecting info <Emoji label="spy" emoji="🔍" />
+        </Heading>
+        <Spinner />
       </React.Fragment>
     )
   }
+
+  return (
+    <React.Fragment>
+      <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
+        <Emoji label="Back" emoji="◀️" /> Go back
+      </TextButton>
+      <Heading type="h1">Your user data</Heading>
+      <Raw>{user}</Raw>
+    </React.Fragment>
+  )
 }
 
 const mapState = state => ({
-  user: state.user.entity,
-  isFetching: state.user.isFetching,
-  isSet: state.user.isSet
+  user: user.user(state),
+  isLoading: user.loading(state)
 })
 
 const mapDispatch = dispatch => ({
-  fetchUser: () => dispatch(fetchUser())
+  fetchUser: () => dispatch(userActions.get())
 })
 
 export default connect(

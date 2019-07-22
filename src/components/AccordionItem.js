@@ -35,7 +35,7 @@ const Button = styled.button`
 const Content = styled.div`
   padding: 0.25rem 0;
 
-  display: ${props => props.open ? 'block' : 'none'};
+  display: ${props => (props.open ? 'block' : 'none')};
 `
 
 class AccordionItem extends React.Component {
@@ -57,9 +57,7 @@ class AccordionItem extends React.Component {
         <Button onClick={this.toggle}>
           {title} {open ? '🔼' : '🔽'}
         </Button>
-        <Content open={open}>
-          {rendered && children}
-        </Content>
+        <Content open={open}>{rendered && children}</Content>
       </Item>
     )
   }
