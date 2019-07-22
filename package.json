@@ -1,6 +1,6 @@
 {
   "name": "downcloud",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "private": true,
   "homepage": "https://downcloud.ruud.ninja",
   "scripts": {
@@ -19,7 +19,6 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "soundcloud": "^3.3.2",
-    "spinkit": "^1.2.5",
     "styled-components": "^4.3.2",
     "styled-normalize": "^8.0.6"
   },
