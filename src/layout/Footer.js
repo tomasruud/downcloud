@@ -8,8 +8,8 @@ const Wrap = styled.footer`
   margin-top: 2rem;
   font-size: 0.8rem;
 
-  padding: 2rem;
-  background-color: ${(props) => props.theme.lightTint};
+  padding-top: 2rem;
+  border-top: 1px solid ${(props) => props.theme.dark};
 `
 
 const Footer = () => (

@@ -25,7 +25,7 @@ const Global = createGlobalStyle`
     color: ${props => props.theme.dark};
     font-family: 'Lato', sans-serif;
     overflow-y: scroll;
-    background-color: ${props => props.theme.light};
+    background-color: ${props => props.theme.lightTint};
   }
 `
 
