@@ -34,4 +34,7 @@ export const getTracks = async () => {
   }
 }
 
-export const makeDownloadable = (url, token) => url + '?oauth_token=' + token
+export const makeDownloadable = (url, token) => {
+  const operator = url.includes('?') ? '&' : '?'
+  return url + operator + 'oauth_token=' + token
+}
