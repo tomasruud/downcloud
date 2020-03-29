@@ -24,7 +24,7 @@ class Raw extends React.Component {
     hl.highlightBlock(this.el)
   }
 
-  setEl = el => {
+  setEl = (el) => {
     this.el = el
   }
 

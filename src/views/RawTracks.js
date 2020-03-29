@@ -1,21 +1,21 @@
 import React, {useLayoutEffect} from 'react'
 import {connect} from 'react-redux'
 
-import {user} from '../selectors'
-import {user as userActions} from '../actions'
+import {tracks} from '../selectors'
+import {tracks as trackActions} from '../actions'
 import {Heading, Link, Raw, Spinner, TextButton} from '../components'
 
-const UserData = ({isLoading, user, fetchUser}) => {
+const RawTracks = ({tracks, isLoading, fetchTracks}) => {
   useLayoutEffect(() => {
-    if (!user) {
-      fetchUser()
+    if (!tracks) {
+      fetchTracks()
     }
-  }, [user, fetchUser])
+  }, [tracks, fetchTracks])
 
   if (isLoading) {
     return (
       <React.Fragment>
-        <Heading type="h1">Gathering information</Heading>
+        <Heading type="h1">Loading data</Heading>
         <Spinner />
       </React.Fragment>
     )
@@ -26,19 +26,19 @@ const UserData = ({isLoading, user, fetchUser}) => {
       <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
         Back
       </TextButton>
-      <Heading type="h1">Your user data</Heading>
-      <Raw>{user}</Raw>
+      <Heading type="h1">Your raw track data</Heading>
+      <Raw>{tracks}</Raw>
     </React.Fragment>
   )
 }
 
 const mapState = (state) => ({
-  user: user.user(state),
-  isLoading: user.loading(state)
+  tracks: tracks.all(state),
+  isLoading: tracks.loading(state)
 })
 
 const mapDispatch = (dispatch) => ({
-  fetchUser: () => dispatch(userActions.get())
+  fetchTracks: () => dispatch(trackActions.get())
 })
 
-export default connect(mapState, mapDispatch)(UserData)
+export default connect(mapState, mapDispatch)(RawTracks)

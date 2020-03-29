@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Button = styled.button`
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
   font-weight: bold;
   text-decoration: none;
 
@@ -18,18 +18,18 @@ const Button = styled.button`
   line-height: inherit;
 
   :hover {
-    color: ${props => props.theme.dark};
+    color: ${(props) => props.theme.dark};
     cursor: pointer;
   }
 
   :active,
   :focus {
-    outline: 2px solid ${props => props.theme.gray};
+    outline: 2px solid ${(props) => props.theme.gray};
   }
 `
 
 const Content = styled.span`
-  display: ${props => (props.visible ? 'block' : 'none')};
+  display: ${(props) => (props.visible ? 'block' : 'none')};
 `
 
 class Reveal extends React.Component {
@@ -39,7 +39,7 @@ class Reveal extends React.Component {
   }
 
   toggle = () => {
-    this.setState(last => ({open: !last.open, rendered: true}))
+    this.setState((last) => ({open: !last.open, rendered: true}))
   }
 
   render() {

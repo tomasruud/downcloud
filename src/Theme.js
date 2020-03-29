@@ -3,26 +3,24 @@ import {createGlobalStyle, ThemeProvider} from 'styled-components'
 import {Normalize} from 'styled-normalize'
 
 const t = {
-  primary: '#f92300',
+  primary: '#c43c00',
   light: '#fff',
   dark: '#000',
-  lightTint: '#faf5f5',
+  lightTint: '#fff5ed',
   gray: '#ddd'
 }
 
 const Global = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Lato');
-
   ::selection {
     background-color: ${props => props.theme.primary};
     color: ${props => props.theme.light};
   }
-  
+
   html {
     font-size: 125%;
     line-height: 1.61;
   }
-  
+
   body {
     color: ${props => props.theme.dark};
     font-family: 'Lato', sans-serif;

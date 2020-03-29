@@ -3,15 +3,13 @@ import {connect} from 'react-redux'
 
 import {session as sessionActions} from '../actions'
 import {session} from '../selectors'
-import {Button, Emoji, Heading, Paragraph, Spinner} from '../components'
+import {Button, Heading, Paragraph, Spinner} from '../components'
 
 const Login = ({isLoading, onLoginClick}) => {
   if (isLoading) {
     return (
       <React.Fragment>
-        <Heading type="h1">
-          Signing you in <Emoji label="investigating" emoji="🕵️‍" />
-        </Heading>
+        <Heading type="h1">Signing you in...</Heading>
         <Spinner />
       </React.Fragment>
     )
@@ -19,30 +17,23 @@ const Login = ({isLoading, onLoginClick}) => {
 
   return (
     <React.Fragment>
-      <Heading type="h1">
-        Downcloud <Emoji label="Music note" emoji="🎶" />
-      </Heading>
+      <Heading type="h1">Downcloud</Heading>
       <Paragraph>
         This app helps you download your own Souncloud tracks as original,
         uncompressed files.
       </Paragraph>
-      <Button onClick={onLoginClick}>
-        <Emoji label="Key" emoji="🔑" /> Sign in with Soundcloud
-      </Button>{' '}
-      to get started
+      <Button onClick={onLoginClick}>Sign in with Soundcloud</Button> to get
+      started
     </React.Fragment>
   )
 }
 
-const mapState = state => ({
+const mapState = (state) => ({
   isLoading: session.loading(state)
 })
 
-const mapDispatch = dispatch => ({
+const mapDispatch = (dispatch) => ({
   onLoginClick: () => dispatch(sessionActions.authenticate())
 })
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Login)
+export default connect(mapState, mapDispatch)(Login)

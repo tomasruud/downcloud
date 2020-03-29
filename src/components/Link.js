@@ -7,7 +7,7 @@ import {router} from '../actions'
 const Link = ({as: Component, to, navigateTo, ...rest}) => (
   <Component
     as="button"
-    onClick={e => {
+    onClick={(e) => {
       e.preventDefault()
       navigateTo(to)
     }}
@@ -19,11 +19,8 @@ Link.defaultProps = {
   as: Base
 }
 
-const actions = dispatch => ({
-  navigateTo: path => dispatch(router.navigate(path))
+const actions = (dispatch) => ({
+  navigateTo: (path) => dispatch(router.navigate(path))
 })
 
-export default connect(
-  null,
-  actions
-)(Link)
+export default connect(null, actions)(Link)

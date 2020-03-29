@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {user} from '../selectors'
 import {user as userActions} from '../actions'
 import {
-  Emoji,
   Heading,
   Link,
   Paragraph,
@@ -12,6 +11,8 @@ import {
   TextButton,
   TrackList
 } from '../components'
+
+const reload = () => window.location.reload()
 
 const Home = ({isLoading, user, fetchUser}) => {
   useLayoutEffect(() => {
@@ -23,9 +24,7 @@ const Home = ({isLoading, user, fetchUser}) => {
   if (isLoading || !user) {
     return (
       <React.Fragment>
-        <Heading type="h1">
-          Collecting info <Emoji label="spy" emoji="🔍" />
-        </Heading>
+        <Heading type="h1">Gathering information...</Heading>
         <Spinner />
       </React.Fragment>
     )
@@ -35,12 +34,11 @@ const Home = ({isLoading, user, fetchUser}) => {
     <React.Fragment>
       <Heading type="h1">
         Hey
-        {!!user.permalink && ' ' + user.permalink}!{' '}
-        <Emoji label="waving" emoji="👋" />
+        {!!user.permalink && ' ' + user.permalink}!
       </Heading>
       <Paragraph>
         Select what data you want to view from the menu below. You can also{' '}
-        <TextButton as="button" onClick={window.location.reload}>
+        <TextButton as="button" onClick={reload}>
           sign out
         </TextButton>{' '}
         and try again with a different account.
@@ -50,24 +48,24 @@ const Home = ({isLoading, user, fetchUser}) => {
         <TextButton as={Link} to="/tracks">
           Tracks
         </TextButton>
+        <TextButton as={Link} to="/tracks/raw">
+          Raw track data (JSON)
+        </TextButton>
         <TextButton as={Link} to="/user-data">
-          User data
+          User data (JSON)
         </TextButton>
       </TrackList>
     </React.Fragment>
   )
 }
 
-const state = state => ({
+const state = (state) => ({
   user: user.user(state),
   isLoading: user.loading(state)
 })
 
-const dispatch = dispatch => ({
+const dispatch = (dispatch) => ({
   fetchUser: () => dispatch(userActions.get())
 })
 
-export default connect(
-  state,
-  dispatch
-)(Home)
+export default connect(state, dispatch)(Home)

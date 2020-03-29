@@ -8,7 +8,7 @@ export const get = () => async (dispatch, getState) => {
 
   const token = session.token(getState())
 
-  const modified = tracks.map(track => ({
+  const modified = tracks.map((track) => ({
     ...track,
     download: Soundcloud.makeDownloadable(track.download_url, token)
   }))

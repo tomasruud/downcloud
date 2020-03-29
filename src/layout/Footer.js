@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import {Emoji, Paragraph, Reveal, TextButton} from '../components'
-import news from '../news'
+import {Paragraph, Reveal, TextButton} from '../components'
+import changelog from '../changelog'
 
 const Wrap = styled.footer`
   margin-top: 2rem;
   font-size: 0.8rem;
 
   padding: 2rem;
-  background-color: ${props => props.theme.lightTint};
+  background-color: ${(props) => props.theme.lightTint};
 `
 
 const Footer = () => (
   <Wrap>
     <Paragraph>
-      <TextButton href="https://buymeacoff.ee/tomas" external={true}>
-        Buy me a slush? <Emoji label="ice" emoji="🍧" />
+      <TextButton href="https://paypal.me/kuletomas" external={true}>
+        Buy me a coffee?
       </TextButton>
     </Paragraph>
 
@@ -32,10 +32,10 @@ const Footer = () => (
       on Github
     </Paragraph>
 
-    <Reveal label="News">
-      {news.map((n, i) => (
+    <Reveal label="Changelog">
+      {changelog.map((n, i) => (
         <React.Fragment key={i}>
-          <strong>{n.date}</strong>
+          <strong>v{n.version}</strong> ({n.date})
           <Paragraph>{n.content}</Paragraph>
         </React.Fragment>
       ))}
@@ -54,8 +54,7 @@ const Footer = () => (
         external={true}
       >
         Report issues
-      </TextButton>{' '}
-      <Emoji label="bug" emoji="🐛" />
+      </TextButton>
       <br />
       Version {process.env.REACT_APP_VERSION}
     </Paragraph>

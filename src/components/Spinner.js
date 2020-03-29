@@ -21,9 +21,9 @@ const Ball = styled.div.attrs(({offset}) => ({
   width: 100%;
   height: 100%;
   border-radius: 100%;
-  background-color: ${p => p.theme.primary};
+  background-color: ${(p) => p.theme.primary};
   opacity: 0.8;
-  animation: ${animation} 1.5s ${p => p.offset}s
+  animation: ${animation} 1.5s ${(p) => p.offset}s
     cubic-bezier(0.53, 0.06, 0.5, 0.95) infinite;
   transform: scale(0);
   position: absolute;

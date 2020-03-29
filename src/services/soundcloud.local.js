@@ -1,8 +1,8 @@
 import {track, user} from './soundcloud.mock'
 
-const timeout = ms => new Promise(resolve => setTimeout(resolve, ms))
+const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const withTimeout = async res => {
+const withTimeout = async (res) => {
   const ms = Math.random() * (1000 - 500) + 500
   await timeout(ms)
   return res

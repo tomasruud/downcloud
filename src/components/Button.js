@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 const Button = styled.button`
-  background-color: ${props => props.theme.primary};
-  color: ${props => props.theme.light};
+  background-color: ${(props) => props.theme.primary};
+  color: ${(props) => props.theme.light};
   border: 0;
 
   cursor: pointer;
@@ -23,8 +23,8 @@ const Button = styled.button`
   :focus {
     transform: scale(1);
     background-color: transparent;
-    color: ${props => props.theme.primary};
-    outline: 2px solid ${props => props.theme.primary};
+    color: ${(props) => props.theme.primary};
+    outline: 2px solid ${(props) => props.theme.primary};
   }
 `
 

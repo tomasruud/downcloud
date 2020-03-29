@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Link = styled.a`
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
   font-weight: bold;
   text-decoration: none;
 
@@ -15,7 +15,7 @@ const Link = styled.a`
 
   :hover,
   :active {
-    color: ${props => props.theme.dark};
+    color: ${(props) => props.theme.dark};
     cursor: pointer;
   }
 `

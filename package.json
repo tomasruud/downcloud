@@ -1,6 +1,6 @@
 {
   "name": "downcloud",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "private": true,
   "homepage": "https://downcloud.ruud.ninja",
   "scripts": {
@@ -10,21 +10,21 @@
     "test": "react-scripts test --env=jsdom"
   },
   "dependencies": {
-    "highlight.js": "^9.15.8",
+    "highlight.js": "^9.18.1",
     "multi-download": "^3.0.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.1.0",
-    "redux": "^4.0.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "soundcloud": "^3.3.2",
-    "styled-components": "^4.3.2",
-    "styled-normalize": "^8.0.6"
+    "styled-components": "^5.0.1",
+    "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "prettier": "^1.18.2",
-    "react-scripts": "^3.0.1"
+    "prettier": "^2.0.2",
+    "react-scripts": "^3.4.1"
   },
   "browserslist": [
     ">0.2%",

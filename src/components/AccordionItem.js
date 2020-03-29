@@ -14,7 +14,7 @@ const Button = styled.button`
 
   text-align: left;
   font-weight: bold;
-  color: ${props => props.theme.primary};
+  color: ${(props) => props.theme.primary};
   line-height: inherit;
 
   border: none;
@@ -23,19 +23,19 @@ const Button = styled.button`
   cursor: pointer;
 
   :hover {
-    color: ${props => props.theme.dark};
+    color: ${(props) => props.theme.dark};
   }
 
   :active,
   :focus {
-    outline-color: ${props => props.theme.gray};
+    outline-color: ${(props) => props.theme.gray};
   }
 `
 
 const Content = styled.div`
   padding: 0.25rem 0;
 
-  display: ${props => (props.open ? 'block' : 'none')};
+  display: ${(props) => (props.open ? 'block' : 'none')};
 `
 
 class AccordionItem extends React.Component {
@@ -45,7 +45,7 @@ class AccordionItem extends React.Component {
   }
 
   toggle = () => {
-    this.setState(previous => ({open: !previous.open, rendered: true}))
+    this.setState((previous) => ({open: !previous.open, rendered: true}))
   }
 
   render() {

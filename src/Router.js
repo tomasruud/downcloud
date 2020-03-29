@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {router, session} from './selectors'
-import {Home, Login, Tracks, UserData} from './views'
+import {Home, Login, Tracks, UserData, RawTracks} from './views'
 
 const Router = ({path, isAuthenticated}) => {
   if (isAuthenticated) {
@@ -12,6 +12,9 @@ const Router = ({path, isAuthenticated}) => {
 
       case '/tracks':
         return <Tracks />
+
+      case '/tracks/raw':
+        return <RawTracks />
 
       case '/dashboard':
       default:
