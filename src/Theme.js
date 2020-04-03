@@ -26,6 +26,7 @@ const Global = createGlobalStyle`
     font-family: 'Lato', sans-serif;
     overflow-y: scroll;
     background-color: ${props => props.theme.lightTint};
+    padding: 0 1rem;
   }
 `
 
