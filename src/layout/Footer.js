@@ -15,7 +15,7 @@ const Wrap = styled.footer`
 const Footer = () => (
   <Wrap>
     <Paragraph>
-      <TextButton href="https://paypal.me/kuletomas" external={true}>
+      <TextButton href="https://www.buymeacoffee.com/tomas" external={true}>
         Buy me a coffee?
       </TextButton>
     </Paragraph>
