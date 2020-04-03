@@ -49,7 +49,7 @@ class Reveal extends React.Component {
     return (
       <span {...props}>
         <Button onClick={this.toggle}>
-          {label} {open ? '🔼' : '🔽'}
+          {label} {open ? '-' : '+'}
         </Button>
         <Content visible={open}>{rendered && children}</Content>
       </span>
