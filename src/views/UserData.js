@@ -14,21 +14,21 @@ const UserData = ({isLoading, user, fetchUser}) => {
 
   if (isLoading) {
     return (
-      <React.Fragment>
+      <>
         <Heading type="h1">Gathering information</Heading>
         <Spinner />
-      </React.Fragment>
+      </>
     )
   }
 
   return (
-    <React.Fragment>
+    <>
       <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
         Back
       </TextButton>
       <Heading type="h1">Your user data</Heading>
       <Raw>{user}</Raw>
-    </React.Fragment>
+    </>
   )
 }
 

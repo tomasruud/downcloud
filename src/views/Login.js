@@ -8,15 +8,15 @@ import {Button, Heading, Paragraph, Spinner} from '../components'
 const Login = ({isLoading, onLoginClick}) => {
   if (isLoading) {
     return (
-      <React.Fragment>
+      <>
         <Heading type="h1">Signing you in...</Heading>
         <Spinner />
-      </React.Fragment>
+      </>
     )
   }
 
   return (
-    <React.Fragment>
+    <>
       <Heading type="h1">Downcloud</Heading>
       <Paragraph>
         This app helps you download your own Souncloud tracks as original,
@@ -24,7 +24,7 @@ const Login = ({isLoading, onLoginClick}) => {
       </Paragraph>
       <Button onClick={onLoginClick}>Sign in with Soundcloud</Button> to get
       started
-    </React.Fragment>
+    </>
   )
 }
 

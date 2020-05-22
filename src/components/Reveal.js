@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -28,33 +28,21 @@ const Button = styled.button`
   }
 `
 
-const Content = styled.span`
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-`
+const Reveal = ({open, label, children, ...props}) => {
+  const [visible, setVisible] = useState(open)
 
-class Reveal extends React.Component {
-  state = {
-    open: this.props.open,
-    rendered: this.props.open
+  const toggle = () => {
+    setVisible(!visible)
   }
 
-  toggle = () => {
-    this.setState((last) => ({open: !last.open, rendered: true}))
-  }
-
-  render() {
-    const {label, children, ...props} = this.props
-    const {rendered, open} = this.state
-
-    return (
-      <span {...props}>
-        <Button onClick={this.toggle}>
-          {label} {open ? '-' : '+'}
-        </Button>
-        <Content visible={open}>{rendered && children}</Content>
-      </span>
-    )
-  }
+  return (
+    <span {...props}>
+      <Button onClick={toggle}>
+        {label} [{visible ? '-' : '+'}]
+      </Button>
+      {visible && children}
+    </span>
+  )
 }
 
 Reveal.propTypes = {

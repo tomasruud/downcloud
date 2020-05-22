@@ -1,7 +1,4 @@
-export {default as Accordion} from './Accordion'
-export {default as AccordionItem} from './AccordionItem'
 export {default as Button} from './Button'
-export {default as Emoji} from './Emoji'
 export {default as Heading} from './Heading'
 export {default as Link} from './Link'
 export {default as Paragraph} from './Paragraph'

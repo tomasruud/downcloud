@@ -12,6 +12,15 @@ const Wrap = styled.footer`
   border-top: 1px solid ${(props) => props.theme.dark};
 `
 
+const ChangelogList = styled.ul`
+  margin: 0;
+  padding: 0;
+`
+
+const ChangelogItem = styled.li`
+  list-style-type: none;
+`
+
 const Footer = () => (
   <Wrap>
     <Paragraph>
@@ -33,12 +42,14 @@ const Footer = () => (
     </Paragraph>
 
     <Reveal label="Changelog">
-      {changelog.map((n, i) => (
-        <React.Fragment key={i}>
-          <strong>v{n.version}</strong> ({n.date})
-          <Paragraph>{n.content}</Paragraph>
-        </React.Fragment>
-      ))}
+      <ChangelogList>
+        {changelog.map((n, i) => (
+          <ChangelogItem key={i}>
+            <strong>v{n.version}</strong> ({n.date})
+            <Paragraph>{n.content}</Paragraph>
+          </ChangelogItem>
+        ))}
+      </ChangelogList>
     </Reveal>
 
     <Reveal label="Legal stuff">

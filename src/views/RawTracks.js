@@ -14,21 +14,21 @@ const RawTracks = ({tracks, isLoading, fetchTracks}) => {
 
   if (isLoading) {
     return (
-      <React.Fragment>
+      <>
         <Heading type="h1">Loading data</Heading>
         <Spinner />
-      </React.Fragment>
+      </>
     )
   }
 
   return (
-    <React.Fragment>
+    <>
       <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
         Back
       </TextButton>
       <Heading type="h1">Your raw track data</Heading>
       <Raw>{tracks}</Raw>
-    </React.Fragment>
+    </>
   )
 }
 

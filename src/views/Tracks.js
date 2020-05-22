@@ -22,33 +22,33 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
 
   if (isLoading) {
     return (
-      <React.Fragment>
+      <>
         <Heading type="h1">Loading your tracks</Heading>
         <Spinner />
-      </React.Fragment>
+      </>
     )
   }
 
   const header = (
-    <React.Fragment>
+    <>
       <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
         Back
       </TextButton>
       <Heading type="h1">Your tracks</Heading>
-    </React.Fragment>
+    </>
   )
 
   if (!tracks || tracks.length < 1) {
     return (
-      <React.Fragment>
+      <>
         {header}
         <Paragraph>Could not find any tracks</Paragraph>
-      </React.Fragment>
+      </>
     )
   }
 
   return (
-    <React.Fragment>
+    <>
       {header}
       <Paragraph>Click on a track name to start downloading.</Paragraph>
       <Paragraph>
@@ -73,7 +73,7 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
           </TextButton>
         ))}
       </TrackList>
-    </React.Fragment>
+    </>
   )
 }
 

@@ -32,11 +32,11 @@ const Global = createGlobalStyle`
 
 const Theme = ({children}) => (
   <ThemeProvider theme={t}>
-    <React.Fragment>
+    <>
       <Normalize />
       <Global />
       {children}
-    </React.Fragment>
+    </>
   </ThemeProvider>
 )
 

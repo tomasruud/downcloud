@@ -1,5 +1,11 @@
 export default [
   {
+    date: '2020-05-22',
+    version: '3.2.0',
+    content:
+      'Removing some dependencies and unused code, and also updating React code to be more modern and use hooks instead of classes.'
+  },
+  {
     date: '2020-03-29',
     version: '3.1.1',
     content:
