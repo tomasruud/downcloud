@@ -16,7 +16,7 @@ const Router = ({ path, isAuthenticated }) => {
       case "/tracks/raw":
         return <RawTracks />
 
-      case "/dashboard":
+      case "/overview":
       default:
         return <Home />
     }

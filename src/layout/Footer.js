@@ -57,6 +57,10 @@ const Footer = () => (
         None of your data will be stored anywhere, everything is done in your
         browser session and destroyed once you exit/refresh the site.
       </Paragraph>
+      <Paragraph>
+        This site uses Google Analytics to analyze how the app is used, which
+        means that there will be a necessary cookie set for this.
+      </Paragraph>
     </Reveal>
 
     <Paragraph style={{ marginBottom: 0 }}>

@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from "react";
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 
 import { user } from "../selectors";
@@ -12,7 +13,14 @@ import {
   TrackList,
 } from "../components";
 
-const reload = () => window.location.reload();
+const reload = () => {
+  ReactGA.event({
+    category: "Session",
+    action: "Used sign out button",
+  });
+
+  window.location.reload();
+};
 
 const Home = ({ isLoading, user, fetchUser }) => {
   useLayoutEffect(() => {

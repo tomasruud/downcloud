@@ -23,7 +23,7 @@ const RawTracks = ({ tracks, isLoading, fetchTracks }) => {
 
   return (
     <>
-      <TextButton as={Link} to="/" style={{ marginBottom: "1rem" }}>
+      <TextButton as={Link} to="/overview" style={{ marginBottom: "1rem" }}>
         Back
       </TextButton>
       <Heading type="h1">Your raw track data</Heading>

@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from "react";
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import multiDownload from "multi-download";
 
@@ -31,7 +32,7 @@ const Tracks = ({ tracks, isLoading, fetchTracks }) => {
 
   const header = (
     <>
-      <TextButton as={Link} to="/" style={{ marginBottom: "1rem" }}>
+      <TextButton as={Link} to="/overview" style={{ marginBottom: "1rem" }}>
         Back
       </TextButton>
       <Heading type="h1">Your tracks</Heading>
@@ -56,6 +57,14 @@ const Tracks = ({ tracks, isLoading, fetchTracks }) => {
         <TextButton
           onClick={(e) => {
             e.preventDefault();
+
+            ReactGA.event({
+              category: "Tracks",
+              action: "Clicked 'download all'",
+              label: "Track count",
+              value: tracks.length,
+            });
+
             multiDownload(tracks.map((t) => t.download));
           }}
         >
@@ -68,7 +77,17 @@ const Tracks = ({ tracks, isLoading, fetchTracks }) => {
 
       <TrackList>
         {tracks.map((t, i) => (
-          <TextButton key={i} href={t.download} external>
+          <TextButton
+            key={i}
+            href={t.download}
+            external
+            onClick={() => {
+              ReactGA.event({
+                category: "Tracks",
+                action: "Clicked on single track download link",
+              });
+            }}
+          >
             {t.title}
           </TextButton>
         ))}
