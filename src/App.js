@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import {Layout} from './layout'
-import Theme from './Theme'
-import Router from './Router'
+import { Layout } from "./layout"
+import Theme from "./Theme"
+import Router from "./Router"
 
 const App = () => (
   <Theme>

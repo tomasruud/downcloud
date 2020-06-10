@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const Link = styled.a`
   color: ${(props) => props.theme.primary};
@@ -18,34 +18,34 @@ const Link = styled.a`
     color: ${(props) => props.theme.dark};
     cursor: pointer;
   }
-`
+`;
 
-const TextButton = ({as, external, children, ...props}) => {
-  let target = {}
+const TextButton = ({ as, external, children, ...props }) => {
+  let target = {};
 
   if (external) {
     target = {
-      target: '_blank',
-      rel: 'noopener noreferrer'
-    }
+      target: "_blank",
+      rel: "noopener noreferrer",
+    };
   }
 
   return (
     <Link as={as} {...target} {...props}>
       {children}
     </Link>
-  )
-}
+  );
+};
 
 TextButton.propTypes = {
   as: PropTypes.any,
   external: PropTypes.bool,
-  children: PropTypes.any.isRequired
-}
+  children: PropTypes.any.isRequired,
+};
 
 TextButton.defaultProps = {
   external: false,
-  as: 'a'
-}
+  as: "a",
+};
 
-export default TextButton
+export default TextButton;

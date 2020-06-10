@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
-import {Paragraph, Reveal, TextButton} from '../components'
-import changelog from '../changelog'
+import { Paragraph, Reveal, TextButton } from "../components";
+import changelog from "../changelog";
 
 const Wrap = styled.footer`
   margin-top: 2rem;
@@ -10,16 +10,16 @@ const Wrap = styled.footer`
 
   padding-top: 2rem;
   border-top: 1px solid ${(props) => props.theme.dark};
-`
+`;
 
 const ChangelogList = styled.ul`
   margin: 0;
   padding: 0;
-`
+`;
 
 const ChangelogItem = styled.li`
   list-style-type: none;
-`
+`;
 
 const Footer = () => (
   <Wrap>
@@ -32,12 +32,12 @@ const Footer = () => (
     <Paragraph>
       <TextButton href="https://soundcloud.com/autodrums" external={true}>
         @autodrums
-      </TextButton>{' '}
+      </TextButton>{" "}
       on Soundcloud
       <br />
       <TextButton href="https://github.com/tomasruud" external={true}>
         @tomasruud
-      </TextButton>{' '}
+      </TextButton>{" "}
       on Github
     </Paragraph>
 
@@ -59,7 +59,7 @@ const Footer = () => (
       </Paragraph>
     </Reveal>
 
-    <Paragraph style={{marginBottom: 0}}>
+    <Paragraph style={{ marginBottom: 0 }}>
       <TextButton
         href="https://github.com/tomasruud/downcloud/issues"
         external={true}
@@ -70,6 +70,6 @@ const Footer = () => (
       Version {process.env.REACT_APP_VERSION}
     </Paragraph>
   </Wrap>
-)
+);
 
-export default Footer
+export default Footer;

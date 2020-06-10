@@ -1,1 +1,1 @@
-export const path = (state) => state.router.path
+export const path = (state) => state.router.path;

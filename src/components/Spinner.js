@@ -1,5 +1,5 @@
-import React from 'react'
-import styled, {keyframes} from 'styled-components'
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
 const animation = keyframes`
   0% {
@@ -13,10 +13,10 @@ const animation = keyframes`
   100% {
   transform: scale(0);
   }
-`
+`;
 
-const Ball = styled.div.attrs(({offset}) => ({
-  offset: offset || 0
+const Ball = styled.div.attrs(({ offset }) => ({
+  offset: offset || 0,
 }))`
   width: 100%;
   height: 100%;
@@ -27,20 +27,20 @@ const Ball = styled.div.attrs(({offset}) => ({
     cubic-bezier(0.53, 0.06, 0.5, 0.95) infinite;
   transform: scale(0);
   position: absolute;
-`
+`;
 
 const Wrap = styled.div`
   display: block;
   position: relative;
   width: 2rem;
   height: 2rem;
-`
+`;
 
-const Spinner = ({...props}) => (
+const Spinner = ({ ...props }) => (
   <Wrap {...props}>
     <Ball />
     <Ball offset={0.75} />
   </Wrap>
-)
+);
 
-export default Spinner
+export default Spinner;

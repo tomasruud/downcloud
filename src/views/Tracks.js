@@ -1,24 +1,24 @@
-import React, {useLayoutEffect} from 'react'
-import {connect} from 'react-redux'
-import multiDownload from 'multi-download'
+import React, { useLayoutEffect } from "react";
+import { connect } from "react-redux";
+import multiDownload from "multi-download";
 
-import {tracks} from '../selectors'
-import {tracks as trackActions} from '../actions'
+import { tracks } from "../selectors";
+import { tracks as trackActions } from "../actions";
 import {
   Heading,
   Link,
   Paragraph,
   Spinner,
   TextButton,
-  TrackList
-} from '../components'
+  TrackList,
+} from "../components";
 
-const Tracks = ({tracks, isLoading, fetchTracks}) => {
+const Tracks = ({ tracks, isLoading, fetchTracks }) => {
   useLayoutEffect(() => {
     if (!tracks) {
-      fetchTracks()
+      fetchTracks();
     }
-  }, [tracks, fetchTracks])
+  }, [tracks, fetchTracks]);
 
   if (isLoading) {
     return (
@@ -26,17 +26,17 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
         <Heading type="h1">Loading your tracks</Heading>
         <Spinner />
       </>
-    )
+    );
   }
 
   const header = (
     <>
-      <TextButton as={Link} to="/" style={{marginBottom: '1rem'}}>
+      <TextButton as={Link} to="/" style={{ marginBottom: "1rem" }}>
         Back
       </TextButton>
       <Heading type="h1">Your tracks</Heading>
     </>
-  )
+  );
 
   if (!tracks || tracks.length < 1) {
     return (
@@ -44,7 +44,7 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
         {header}
         <Paragraph>Could not find any tracks</Paragraph>
       </>
-    )
+    );
   }
 
   return (
@@ -52,11 +52,11 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
       {header}
       <Paragraph>Click on a track name to start downloading.</Paragraph>
       <Paragraph>
-        If you're feeling lucky, you can try to{' '}
+        If you're feeling lucky, you can try to{" "}
         <TextButton
           onClick={(e) => {
-            e.preventDefault()
-            multiDownload(tracks.map((t) => t.download))
+            e.preventDefault();
+            multiDownload(tracks.map((t) => t.download));
           }}
         >
           download all tracks at once
@@ -74,16 +74,16 @@ const Tracks = ({tracks, isLoading, fetchTracks}) => {
         ))}
       </TrackList>
     </>
-  )
-}
+  );
+};
 
 const mapState = (state) => ({
   tracks: tracks.all(state),
-  isLoading: tracks.loading(state)
-})
+  isLoading: tracks.loading(state),
+});
 
 const mapDispatch = (dispatch) => ({
-  fetchTracks: () => dispatch(trackActions.get())
-})
+  fetchTracks: () => dispatch(trackActions.get()),
+});
 
-export default connect(mapState, mapDispatch)(Tracks)
+export default connect(mapState, mapDispatch)(Tracks);

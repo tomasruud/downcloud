@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const Button = styled.button`
   color: ${(props) => props.theme.primary};
@@ -26,33 +26,33 @@ const Button = styled.button`
   :focus {
     outline: 2px solid ${(props) => props.theme.gray};
   }
-`
+`;
 
-const Reveal = ({open, label, children, ...props}) => {
-  const [visible, setVisible] = useState(open)
+const Reveal = ({ open, label, children, ...props }) => {
+  const [visible, setVisible] = useState(open);
 
   const toggle = () => {
-    setVisible(!visible)
-  }
+    setVisible(!visible);
+  };
 
   return (
     <span {...props}>
       <Button onClick={toggle}>
-        {label} [{visible ? '-' : '+'}]
+        {label} [{visible ? "-" : "+"}]
       </Button>
       {visible && children}
     </span>
-  )
-}
+  );
+};
 
 Reveal.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.any.isRequired,
-  open: PropTypes.bool
-}
+  open: PropTypes.bool,
+};
 
 Reveal.defaultProps = {
-  open: false
-}
+  open: false,
+};
 
-export default Reveal
+export default Reveal;

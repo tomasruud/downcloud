@@ -1,26 +1,26 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from "redux";
 
 const loading = (state = false, action) => {
-  if (action.type === 'REQUEST_TRACKS') {
-    return true
+  if (action.type === "REQUEST_TRACKS") {
+    return true;
   }
 
-  if (action.type === 'RECEIVE_TRACKS') {
-    return false
+  if (action.type === "RECEIVE_TRACKS") {
+    return false;
   }
 
-  return state
-}
+  return state;
+};
 
 const tracks = (state = null, action) => {
-  if (action.type === 'RECEIVE_TRACKS') {
-    return action.tracks
+  if (action.type === "RECEIVE_TRACKS") {
+    return action.tracks;
   }
 
-  return state
-}
+  return state;
+};
 
 export default combineReducers({
   loading,
-  tracks
-})
+  tracks,
+});

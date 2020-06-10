@@ -1,19 +1,19 @@
-import React from 'react'
-import {createGlobalStyle, ThemeProvider} from 'styled-components'
-import {Normalize} from 'styled-normalize'
+import React from "react"
+import { createGlobalStyle, ThemeProvider } from "styled-components"
+import { Normalize } from "styled-normalize"
 
 const t = {
-  primary: '#c43c00',
-  light: '#fff',
-  dark: '#000',
-  lightTint: '#fff5ed',
-  gray: '#ddd'
+  primary: "#c43c00",
+  light: "#fff",
+  dark: "#000",
+  lightTint: "#fff5ed",
+  gray: "#ddd",
 }
 
 const Global = createGlobalStyle`
   ::selection {
-    background-color: ${props => props.theme.primary};
-    color: ${props => props.theme.light};
+    background-color: ${(props) => props.theme.primary};
+    color: ${(props) => props.theme.light};
   }
 
   html {
@@ -22,15 +22,15 @@ const Global = createGlobalStyle`
   }
 
   body {
-    color: ${props => props.theme.dark};
+    color: ${(props) => props.theme.dark};
     font-family: 'Lato', sans-serif;
     overflow-y: scroll;
-    background-color: ${props => props.theme.lightTint};
+    background-color: ${(props) => props.theme.lightTint};
     padding: 0 1rem;
   }
 `
 
-const Theme = ({children}) => (
+const Theme = ({ children }) => (
   <ThemeProvider theme={t}>
     <>
       <Normalize />

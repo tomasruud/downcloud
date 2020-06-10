@@ -1,25 +1,25 @@
-import React, {useLayoutEffect} from 'react'
-import {connect} from 'react-redux'
+import React, { useLayoutEffect } from "react";
+import { connect } from "react-redux";
 
-import {user} from '../selectors'
-import {user as userActions} from '../actions'
+import { user } from "../selectors";
+import { user as userActions } from "../actions";
 import {
   Heading,
   Link,
   Paragraph,
   Spinner,
   TextButton,
-  TrackList
-} from '../components'
+  TrackList,
+} from "../components";
 
-const reload = () => window.location.reload()
+const reload = () => window.location.reload();
 
-const Home = ({isLoading, user, fetchUser}) => {
+const Home = ({ isLoading, user, fetchUser }) => {
   useLayoutEffect(() => {
     if (!user) {
-      fetchUser()
+      fetchUser();
     }
-  }, [user, fetchUser])
+  }, [user, fetchUser]);
 
   if (isLoading || !user) {
     return (
@@ -27,21 +27,21 @@ const Home = ({isLoading, user, fetchUser}) => {
         <Heading type="h1">Gathering information...</Heading>
         <Spinner />
       </>
-    )
+    );
   }
 
   return (
     <>
       <Heading type="h1">
         Hey
-        {!!user.permalink && ' ' + user.permalink}!
+        {!!user.permalink && " " + user.permalink}!
       </Heading>
 
       <Paragraph>
-        Select what data you want to view from the menu below. You can also{' '}
+        Select what data you want to view from the menu below. You can also{" "}
         <TextButton as="button" onClick={reload}>
           sign out
-        </TextButton>{' '}
+        </TextButton>{" "}
         and try again with a different account.
       </Paragraph>
 
@@ -57,16 +57,16 @@ const Home = ({isLoading, user, fetchUser}) => {
         </TextButton>
       </TrackList>
     </>
-  )
-}
+  );
+};
 
 const state = (state) => ({
   user: user.user(state),
-  isLoading: user.loading(state)
-})
+  isLoading: user.loading(state),
+});
 
 const dispatch = (dispatch) => ({
-  fetchUser: () => dispatch(userActions.get())
-})
+  fetchUser: () => dispatch(userActions.get()),
+});
 
-export default connect(state, dispatch)(Home)
+export default connect(state, dispatch)(Home);

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Button = styled.button`
   background-color: ${(props) => props.theme.primary};
@@ -26,6 +26,6 @@ const Button = styled.button`
     color: ${(props) => props.theme.primary};
     outline: 2px solid ${(props) => props.theme.primary};
   }
-`
+`;
 
-export default Button
+export default Button;

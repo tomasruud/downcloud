@@ -1,22 +1,22 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React from "react"
+import { connect } from "react-redux"
 
-import {router, session} from './selectors'
-import {Home, Login, Tracks, UserData, RawTracks} from './views'
+import { router, session } from "./selectors"
+import { Home, Login, Tracks, UserData, RawTracks } from "./views"
 
-const Router = ({path, isAuthenticated}) => {
+const Router = ({ path, isAuthenticated }) => {
   if (isAuthenticated) {
     switch (path) {
-      case '/user-data':
+      case "/user-data":
         return <UserData />
 
-      case '/tracks':
+      case "/tracks":
         return <Tracks />
 
-      case '/tracks/raw':
+      case "/tracks/raw":
         return <RawTracks />
 
-      case '/dashboard':
+      case "/dashboard":
       default:
         return <Home />
     }
@@ -25,9 +25,9 @@ const Router = ({path, isAuthenticated}) => {
   return <Login />
 }
 
-const select = state => ({
+const select = (state) => ({
   path: router.path(state),
-  isAuthenticated: session.authenticated(state)
+  isAuthenticated: session.authenticated(state),
 })
 
 export default connect(select)(Router)
