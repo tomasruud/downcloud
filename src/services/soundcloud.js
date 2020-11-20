@@ -17,7 +17,7 @@ export const getMe = async () => {
 export const getTracks = async () => {
   let result = await SC.get("/me/tracks", {
     limit: 50,
-    linked_partitioning: 1,
+    linked_partitioning: true,
   });
 
   let tracks = [];

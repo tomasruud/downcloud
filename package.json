@@ -12,19 +12,19 @@
   "dependencies": {
     "multi-download": "^3.0.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-ga": "^3.0.0",
-    "react-redux": "^7.2.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-ga": "^3.2.1",
+    "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "soundcloud": "^3.3.2",
-    "styled-components": "^5.1.0",
+    "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "prettier": "^2.0.5",
-    "react-scripts": "^3.4.1"
+    "prettier": "^2.2.0",
+    "react-scripts": "^3.4.4"
   },
   "browserslist": [
     ">0.2%",
