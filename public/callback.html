@@ -11,8 +11,12 @@
 <script>
     (function () {
         if (window.opener) {
-            var params = window.location.search;
-            window.opener.postMessage(params);
+            window.opener.postMessage({
+                source: "auth-callback",
+                params: window.location.search,
+                hash: window.location.hash
+            });
+
             window.close();
         }
     })();
