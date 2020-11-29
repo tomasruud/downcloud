@@ -5,14 +5,25 @@ import React, {
   useReducer,
 } from "react";
 
-type Action = { type: "setToken"; payload: string };
+type Action =
+  | { type: "session/token/fetch" }
+  | { type: "session/token/error"; payload: any }
+  | { type: "session/token/set"; payload: string };
 
 type State = {
-  token: string;
+  session: {
+    token: string;
+    loading: boolean;
+    error: any | null;
+  };
 };
 
 const initialState: State = {
-  token: "",
+  session: {
+    token: "",
+    loading: false,
+    error: null,
+  },
 };
 
 const Store = React.createContext<{ state: State; dispatch: Dispatch<Action> }>(
@@ -24,8 +35,35 @@ const Store = React.createContext<{ state: State; dispatch: Dispatch<Action> }>(
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "setToken":
-      return { ...state, token: action.payload };
+    case "session/token/set":
+      return {
+        ...state,
+        session: {
+          ...state.session,
+          loading: false,
+          token: action.payload,
+        },
+      };
+
+    case "session/token/fetch":
+      return {
+        ...state,
+        session: {
+          ...state.session,
+          loading: true,
+          error: null,
+        },
+      };
+
+    case "session/token/error":
+      return {
+        ...state,
+        session: {
+          ...state.session,
+          loading: false,
+          error: action.payload,
+        },
+      };
   }
 
   return state;

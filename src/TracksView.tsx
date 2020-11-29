@@ -1,16 +1,20 @@
 import React, { memo } from "react";
-import ReactGA from "react-ga";
 import multiDownload from "multi-download";
+import type { LazyDataOrModifiedFn } from "use-async-resource";
 
 import type { Track } from "api/soundcloud";
-import { Heading, Paragraph, TextButton, TrackList } from "components";
+import { Button, Heading, Link, Paragraph, TrackList } from "components";
 
 type Props = {
-  tracksReader: () => Track[];
+  tracksReader: LazyDataOrModifiedFn<Track[]>;
 };
 
 const TracksView = ({ tracksReader }: Props) => {
   const tracks = tracksReader();
+
+  if (tracks === undefined) {
+    return null;
+  }
 
   return (
     <>
@@ -19,21 +23,12 @@ const TracksView = ({ tracksReader }: Props) => {
       <Paragraph>Click on a track name to start downloading.</Paragraph>
       <Paragraph>
         If you're feeling lucky, you can try to{" "}
-        <TextButton
-          as="button"
-          onClick={() => {
-            ReactGA.event({
-              category: "Tracks",
-              action: "Clicked 'download all'",
-              label: "Track count",
-              value: tracks.length,
-            });
-
-            multiDownload(tracks.map((t) => t.download));
-          }}
+        <Button
+          type="plain"
+          onClick={() => multiDownload(tracks.map((t) => t.download))}
         >
           download all tracks at once
-        </TextButton>
+        </Button>
         . Please note that this feature is experimental and may not work! If
         you're using Chrome, try disabling the option "Ask where to save each
         file before downloading" if it's not working properly.
@@ -41,19 +36,9 @@ const TracksView = ({ tracksReader }: Props) => {
 
       <TrackList>
         {tracks.map((t, i) => (
-          <TextButton
-            key={i}
-            href={t.download}
-            external={true}
-            onClick={() => {
-              ReactGA.event({
-                category: "Tracks",
-                action: "Clicked on single track download link",
-              });
-            }}
-          >
+          <Link key={i} href={t.download} external={true}>
             {t.title}
-          </TextButton>
+          </Link>
         ))}
       </TrackList>
     </>

@@ -1,23 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import { Provider as StoreProvider } from "./Store";
 import "./index.dist.css";
-import { authenticate } from "./api/soundcloud";
 
 const render = () => {
-  // const App = require("./App").default;
-
-  const App = () => {
-    useEffect(() => {
-      authenticate(
-        process.env.REACT_APP_SC_CLIENT_ID || "",
-        process.env.REACT_APP_SC_REDIRECT_URI || "",
-        process.env.REACT_APP_URI || ""
-      ).then(console.log);
-    });
-    return null;
-  };
+  const App = require("./App").default;
 
   ReactDOM.render(
     <React.StrictMode>
