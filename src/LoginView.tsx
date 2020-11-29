@@ -14,7 +14,11 @@ const LoginView = () => {
       try {
         setLoading(true);
 
-        const token = await authenticate();
+        const token = await authenticate(
+            process.env.REACT_APP_SC_CLIENT_ID || "",
+            process.env.REACT_APP_SC_REDIRECT_URI || "",
+            process.env.REACT_APP_URI || ""
+        );
 
         dispatch({
           type: "setToken",

@@ -44,11 +44,8 @@ export const authenticate = async (
     window.addEventListener(
       "message",
       function receiveToken(event: MessageEvent<AuthEvent>) {
-        if (event.origin !== origin) {
-          return;
-        }
-
         if (
+          event.origin !== origin ||
           !event.data ||
           !event.data.source ||
           event.data.source !== "auth-callback"
