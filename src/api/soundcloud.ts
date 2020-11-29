@@ -19,16 +19,16 @@ export const authenticate = async (): Promise<Token> => {
     window.addEventListener(
       "message",
       function receiveToken(event) {
-        window.removeEventListener("message", receiveToken, false);
         console.dir(event);
 
-        if (event.origin !== "") {
-          reject("invalid event origin when authenticating");
+        if (event.origin !== "https://downcloud.ruud.ninja") {
           return;
         }
 
         const { data } = event;
         console.dir(data);
+        // window.removeEventListener("message", receiveToken, false);
+
         resolve(data);
       },
       false
