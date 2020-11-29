@@ -12,7 +12,7 @@
     window.opener.postMessage({
         source: "auth-callback",
         params: window.location.hash.slice(1)
-    });
+    }, "*");
 </script>
 </body>
 </html>

@@ -1,14 +1,3 @@
-export type Token = string;
-
-export type Track = {
-  title: string;
-  download: string;
-};
-
-export type User = {
-  name: string;
-};
-
 const apiUrl = "https://api.soundcloud.com";
 
 export const authenticate = async (
@@ -44,8 +33,9 @@ export const authenticate = async (
     window.addEventListener(
       "message",
       function receiveToken(event: MessageEvent<AuthEvent>) {
+        console.log(event);
         if (
-          event.origin !== origin ||
+          // event.origin !== origin ||
           !event.data ||
           !event.data.source ||
           event.data.source !== "auth-callback"
@@ -77,4 +67,15 @@ export const tracks = async (token: Token): Promise<Track[]> => {
 
 export const user = async (token: Token): Promise<User> => {
   return Promise.resolve({ name: "Per" });
+};
+
+export type Token = string;
+
+export type Track = {
+  title: string;
+  download: string;
+};
+
+export type User = {
+  name: string;
 };
