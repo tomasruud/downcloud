@@ -41,6 +41,10 @@ export const authenticate = async (): Promise<Token> => {
 
         const { data } = event;
 
+        if (!data || !data.source || data.source !== "auth-callback") {
+            return;
+        }
+
         window.removeEventListener("message", receiveToken, false);
 
         resolve(data);
