@@ -1,0 +1,71 @@
+export type Token = string;
+
+export type Track = {
+  title: string;
+  download: string;
+};
+
+export type User = {
+  name: string;
+};
+
+const apiUrl = "https://api.soundcloud.com";
+
+export const authenticate = async (): Promise<Token> => {
+  const clientId: string = process.env.REACT_APP_SC_CLIENT_ID || "";
+  const redirectUri: string = process.env.REACT_APP_SC_REDIRECT_URI || "";
+
+  return new Promise<Token>((resolve, reject) => {
+    window.addEventListener(
+      "message",
+      function receiveToken(event) {
+        window.removeEventListener("message", receiveToken, false);
+
+        if (event.origin !== "") {
+          reject("invalid event origin when authenticating");
+          return;
+        }
+
+        const { data } = event;
+        console.dir(data);
+        resolve(data);
+      },
+      false
+    );
+
+    const options: { [key: string]: string | number } = {
+      location: 1,
+      width: 400,
+      height: 600,
+      left: window.screenX + (window.outerWidth - 400) / 2,
+      top: window.screenY + (window.outerHeight - 600) / 2,
+      toolbar: "no",
+      scrollbars: "yes",
+    };
+
+    const optString = Object.keys(options)
+      .map((k) => `${k}=${options[k]}`)
+      .join(", ");
+
+    const query = new URLSearchParams({
+      client_id: clientId,
+      redirect_url: redirectUri,
+      response_type: "token",
+      scope: "*",
+      display: "popup",
+    });
+
+    const uri = `https://soundcloud.com/connect?${query.toString()}`;
+    console.log(uri);
+
+    window.open(uri, "authentication", optString);
+  });
+};
+
+export const tracks = async (token: Token): Promise<Track[]> => {
+  return Promise.resolve([]);
+};
+
+export const user = async (token: Token): Promise<User> => {
+  return Promise.resolve({ name: "Per" });
+};

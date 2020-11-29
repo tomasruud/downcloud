@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Processing authentication...</title>
+    <title>Processing authentication...</title>
 </head>
-<body onload="window.setTimeout(window.opener.SC.connectCallback, 1)">
-  <strong>This popup should automatically close in a few seconds‍</strong>
+<body>
+<strong>This popup should automatically close in a few seconds</strong>
+<script>
+    (function () {
+        if (window.opener) {
+            var params = window.location.search;
+            window.opener.postMessage(params);
+            window.close();
+        }
+    })();
+</script>
 </body>
 </html>
