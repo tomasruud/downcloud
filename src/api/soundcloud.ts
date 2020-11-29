@@ -33,6 +33,17 @@ export const authenticate = async (): Promise<Token> => {
       false
     );
 
+    const query = new URLSearchParams({
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      response_type: "code_and_token",
+      scope: "non-expiring",
+      display: "popup",
+      state: "connect"
+    });
+
+    const uri = `https://soundcloud.com/connect?${query.toString()}`;
+
     const options: { [key: string]: string | number } = {
       location: 1,
       width: 400,
@@ -43,22 +54,13 @@ export const authenticate = async (): Promise<Token> => {
       scrollbars: "yes",
     };
 
-    const optString = Object.keys(options)
-      .map((k) => `${k}=${options[k]}`)
-      .join(", ");
-
-    const query = new URLSearchParams({
-      client_id: clientId,
-      redirect_url: redirectUri,
-      response_type: "token",
-      scope: "*",
-      display: "popup",
-    });
-
-    const uri = `https://soundcloud.com/connect?${query.toString()}`;
-    console.log(uri);
-
-    window.open(uri, "authentication", optString);
+    window.open(
+      uri,
+      "authentication",
+      Object.keys(options)
+        .map((k) => `${k}=${options[k]}`)
+        .join(", ")
+    );
   });
 };
 
