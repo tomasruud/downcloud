@@ -23,13 +23,18 @@ export const authenticate = async (): Promise<Token> => {
     display: "popup",
   });
 
-  window.open(
+  const popup = window.open(
     `https://soundcloud.com/connect?${query.toString()}`,
     "soundcloud-auth-popup",
     "width=400, height=600, location=yes, toolbar=no, scrollbars=yes"
   );
 
   return new Promise<Token>((resolve, reject) => {
+    if (!popup) {
+      reject("Unable to create authentication popup.");
+      return;
+    }
+
     window.addEventListener(
       "message",
       function receiveToken(event) {
@@ -42,10 +47,11 @@ export const authenticate = async (): Promise<Token> => {
         const { data } = event;
 
         if (!data || !data.source || data.source !== "auth-callback") {
-            return;
+          return;
         }
 
         window.removeEventListener("message", receiveToken, false);
+        popup.close();
 
         resolve(data);
       },

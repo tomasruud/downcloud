@@ -9,17 +9,11 @@
 <body>
 <strong>This popup should automatically close in a few seconds</strong>
 <script>
-    (function () {
-        if (window.opener) {
-            window.opener.postMessage({
-                source: "auth-callback",
-                params: window.location.search,
-                hash: window.location.hash
-            });
-
-            window.close();
-        }
-    })();
+    window.opener.postMessage({
+        source: "auth-callback",
+        params: window.location.search,
+        hash: window.location.hash
+    });
 </script>
 </body>
 </html>
