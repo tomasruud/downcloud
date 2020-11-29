@@ -11,10 +11,11 @@ export type User = {
 
 const apiUrl = "https://api.soundcloud.com";
 
-export const authenticate = async (): Promise<Token> => {
-  const clientId: string = process.env.REACT_APP_SC_CLIENT_ID || "";
-  const redirectUri: string = process.env.REACT_APP_SC_REDIRECT_URI || "";
-
+export const authenticate = async (
+  clientId: string,
+  redirectUri: string,
+  origin: string
+): Promise<Token> => {
   const query = new URLSearchParams({
     client_id: clientId,
     redirect_uri: redirectUri,
@@ -35,25 +36,38 @@ export const authenticate = async (): Promise<Token> => {
       return;
     }
 
+    type AuthEvent = {
+      source: "auth-callback";
+      params: string;
+    };
+
     window.addEventListener(
       "message",
-      function receiveToken(event) {
-        console.dir(event);
-
-        if (event.origin !== "https://downcloud.ruud.ninja") {
+      function receiveToken(event: MessageEvent<AuthEvent>) {
+        if (event.origin !== origin) {
           return;
         }
 
-        const { data } = event;
-
-        if (!data || !data.source || data.source !== "auth-callback") {
+        if (
+          !event.data ||
+          !event.data.source ||
+          event.data.source !== "auth-callback"
+        ) {
           return;
         }
 
         window.removeEventListener("message", receiveToken, false);
         popup.close();
 
-        resolve(data);
+        const params = new URLSearchParams(event.data.params);
+        const token = params.get("access_token");
+
+        if (!token) {
+          reject("No access token was passed back.");
+          return;
+        }
+
+        resolve(token);
       },
       false
     );

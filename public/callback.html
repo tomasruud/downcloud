@@ -11,8 +11,7 @@
 <script>
     window.opener.postMessage({
         source: "auth-callback",
-        params: window.location.search,
-        hash: window.location.hash
+        params: window.location.hash.slice(1)
     });
 </script>
 </body>

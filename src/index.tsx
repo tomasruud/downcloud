@@ -10,7 +10,11 @@ const render = () => {
 
   const App = () => {
     useEffect(() => {
-      authenticate().then(console.log);
+      authenticate(
+        process.env.REACT_APP_SC_CLIENT_ID || "",
+        process.env.REACT_APP_SC_REDIRECT_URI || "",
+        process.env.REACT_APP_URI || ""
+      ).then(console.log);
     });
     return null;
   };
