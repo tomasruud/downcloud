@@ -20,6 +20,7 @@ export const authenticate = async (): Promise<Token> => {
       "message",
       function receiveToken(event) {
         window.removeEventListener("message", receiveToken, false);
+        console.dir(event);
 
         if (event.origin !== "") {
           reject("invalid event origin when authenticating");
@@ -36,10 +37,9 @@ export const authenticate = async (): Promise<Token> => {
     const query = new URLSearchParams({
       client_id: clientId,
       redirect_uri: redirectUri,
-      response_type: "code_and_token",
+      response_type: "token",
       scope: "non-expiring",
-      display: "popup",
-      state: "connect"
+      display: "popup"
     });
 
     const uri = `https://soundcloud.com/connect?${query.toString()}`;
