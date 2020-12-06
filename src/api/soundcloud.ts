@@ -104,8 +104,16 @@ interface SoundcloudTrack {
 const soundcloudTrackToInternal = (token: Token) => (
   track: SoundcloudTrack
 ): Track => {
+  let dl = track.download_url;
+
+  if (!dl.includes("?")) {
+    dl = `${dl}?oauth_token=${token}`;
+  } else {
+    dl = `${dl}&oauth_token=${token}`;
+  }
+
   return {
     title: track.title,
-    download: `${track.download_url}&oauth_token=${token}`,
+    download: dl,
   };
 };
