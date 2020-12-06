@@ -7,7 +7,7 @@ type Props = {
 
 const LoginView = ({ onAuthenticate }: Props) => (
   <>
-    <Heading type="h1">Downcloud</Heading>
+    <Heading>Downcloud</Heading>
     <Paragraph>
       This app helps you download your own Souncloud tracks as original,
       uncompressed files.

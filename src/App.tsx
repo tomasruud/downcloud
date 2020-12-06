@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import ReactGA from "react-ga";
-import { useAsyncResource } from "use-async-resource";
 
-import { authenticate, tracks } from "api/soundcloud";
+import type { Track } from "types";
+import * as soundcloud from "api/soundcloud";
 import { Link, Paragraph, Spinner } from "components";
-import ErrorBoundary from "./ErrorBoundary";
-import { useStore } from "./Store";
 import TracksView from "./TracksView";
 import LoginView from "./LoginView";
 
@@ -18,25 +16,49 @@ const App = () => {
     ReactGA.pageview("/");
   }, []);
 
-  const { state, dispatch } = useStore();
-  const [authenticator, initializeAuth] = useAsyncResource(authenticate);
-  const [tracksReader, getTracks] = useAsyncResource(tracks);
+  const [token, setToken] = useState("");
+  const [tracks, setTracks] = useState<Track[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<any | null>(null);
+
+  let content: ReactElement;
+
+  if (loading) {
+    content = <Spinner />;
+  } else if (token === "") {
+    const onAuthenticate = async () => {
+      try {
+        setLoading(true);
+
+        const token = await soundcloud.authenticate(
+          process.env.REACT_APP_SC_CLIENT_ID || "",
+          process.env.REACT_APP_SC_REDIRECT_URI || "",
+          process.env.REACT_APP_URI || ""
+        );
+        setToken(token);
+
+        const tracks = await soundcloud.tracks(token);
+        setTracks(tracks);
+      } catch (err) {
+        console.error(err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    content = <LoginView onAuthenticate={onAuthenticate} />;
+  } else if (error !== null) {
+    content = <>An error occurred</>;
+  } else {
+    content = <TracksView tracks={tracks} />;
+  }
 
   return (
-    <>
-      <main>
-        <ErrorBoundary>
-          <React.Suspense fallback={<Spinner />}>
-            {state.session.token !== "" ? (
-              <TracksView tracksReader={tracksReader} />
-            ) : (
-              <LoginView onAuthenticate={() => {}} />
-            )}
-          </React.Suspense>
-        </ErrorBoundary>
-      </main>
+    <div className="container mx-auto max-w-2xl">
+      <main className="py-6 px-12">{content}</main>
 
-      <footer className="mt-3 font-sm pt-3">
+      <footer className="py-6 px-12 mt-6 bg-gray-100 md:rounded">
         <Paragraph>
           <Link href="https://www.buymeacoffee.com/tomas" external={true}>
             Buy me a coffee?
@@ -55,7 +77,7 @@ const App = () => {
           on Github
         </Paragraph>
 
-        <Paragraph noMargin={true}>
+        <Paragraph>
           <Link
             href="https://github.com/tomasruud/downcloud/issues"
             external={true}
@@ -72,17 +94,19 @@ const App = () => {
           <br />
           Version {process.env.REACT_APP_VERSION}
         </Paragraph>
-
-        <Paragraph>
-          None of your data will be stored anywhere, everything is done in your
-          browser session and destroyed once you exit/refresh the site.
-        </Paragraph>
-        <Paragraph>
-          This site uses Google Analytics to analyze how the app is used, which
-          means that there will be a necessary cookie set for this.
-        </Paragraph>
       </footer>
-    </>
+
+      <span className="text-gray-400 text-xs py-6 px-12 block">
+          <Paragraph>
+            None of your data will be stored anywhere, everything is done in
+            your browser session and destroyed once you exit/refresh the site.
+          </Paragraph>
+          <Paragraph>
+            This site uses Google Analytics to analyze how the app is used,
+            which means that there will be a necessary cookie set for this.
+          </Paragraph>
+        </span>
+    </div>
   );
 };
 

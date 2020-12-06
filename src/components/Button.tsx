@@ -5,20 +5,31 @@ type Props = {
   className?: string;
   onClick: () => void;
   children: ReactNode;
+  disabled?: boolean;
 };
 
-const styleFromType = (type: Props["type"]): string => {
+const styleFromType = (type: "plain" | undefined): string => {
   switch (type) {
     case "plain":
-      return "cursor-pointer font-bold no-underline text-purple-500";
+      return "cursor-pointer font-bold no-underline text-purple-500 inline hover:underline";
 
     default:
       return "cursor-pointer p-3 rounded bg-purple-500 text-white";
   }
 };
 
-const Button = ({ type, onClick, className, children }: Props) => (
-  <button className={`${styleFromType(type)} ${className}`} onClick={onClick}>
+const Button = ({
+  type,
+  onClick,
+  className,
+  children,
+  disabled = false,
+}: Props) => (
+  <button
+    className={`${styleFromType(type)} ${className}`}
+    onClick={onClick}
+    disabled={disabled}
+  >
     {children}
   </button>
 );

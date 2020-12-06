@@ -1,10 +1,12 @@
-import React, { memo } from "react";
+import React, { memo, ReactNode } from "react";
 
-type Props = React.HTMLProps<HTMLAnchorElement> & {
+type Props = {
+  href: string;
   external?: boolean;
+  children: ReactNode;
 };
 
-const Link = ({ external = false, children, className, ...props }: Props) => {
+const Link = ({ external = false, children, href }: Props) => {
   let target = {};
 
   if (external) {
@@ -16,11 +18,11 @@ const Link = ({ external = false, children, className, ...props }: Props) => {
 
   return (
     <a
-      className={`font-bold no-underline text-purple-500 cursor-pointer ${className}`}
+      className="font-bold no-underline text-purple-500 cursor-pointer hover:underline"
+      href={href}
       {...target}
-      {...props}
     >
-      {children}{" "}
+      {children}
     </a>
   );
 };

@@ -1,24 +1,35 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import multiDownload from "multi-download";
-import type { LazyDataOrModifiedFn } from "use-async-resource";
 
-import type { Track } from "api/soundcloud";
-import { Button, Heading, Link, Paragraph, TrackList } from "components";
+import type { Track } from "types";
+import { Button, Heading, Link, Paragraph } from "components";
 
 type Props = {
-  tracksReader: LazyDataOrModifiedFn<Track[]>;
+  tracks: Track[];
 };
 
-const TracksView = ({ tracksReader }: Props) => {
-  const tracks = tracksReader();
+const TracksView = ({ tracks }: Props) => {
+  const [search, setSearch] = useState("");
 
-  if (tracks === undefined) {
-    return null;
-  }
+  const filtered = tracks.filter((t) =>
+    t.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+  );
+
+  const sorted = filtered.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+
+    if (a.title > b.title) {
+      return 1;
+    }
+
+    return 0;
+  });
 
   return (
     <>
-      <Heading type="h1">Your tracks</Heading>
+      <Heading>Your tracks</Heading>
 
       <Paragraph>Click on a track name to start downloading.</Paragraph>
       <Paragraph>
@@ -34,13 +45,23 @@ const TracksView = ({ tracksReader }: Props) => {
         file before downloading" if it's not working properly.
       </Paragraph>
 
-      <TrackList>
-        {tracks.map((t, i) => (
-          <Link key={i} href={t.download} external={true}>
-            {t.title}
-          </Link>
+      <input
+        type="text"
+        className="mt-3 border border p-3 rounded focus:ring focus:ring-purple-500 w-full"
+        placeholder="Filter by title..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <ul className="list-inside list-disc mt-6">
+        {sorted.map((t, i) => (
+          <li key={i} className="mb-2">
+            <Link href={t.download} external={true}>
+              {t.title}
+            </Link>
+          </li>
         ))}
-      </TrackList>
+      </ul>
     </>
   );
 };

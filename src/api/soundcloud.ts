@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Track } from "../types";
 
 const apiUrl = "https://api.soundcloud.com";
 
@@ -63,13 +64,48 @@ export const authenticate = async (
 };
 
 export const tracks = async (token: Token): Promise<Track[]> => {
-  const res = await axios.get(`${apiUrl}/me/tracks?access_token${token}`);
-  return Promise.resolve([]);
+  const query = new URLSearchParams({
+    oauth_token: token,
+    linked_partitioning: "1",
+    limit: "200",
+  });
+
+  const tracks: Track[] = [];
+  let next: string | undefined;
+  do {
+    let url = `${apiUrl}/me/tracks?${query.toString()}`;
+
+    if (next && next !== "") {
+      url = `${next}&oauth_token=${token}`;
+    }
+
+    const { data } = await axios.get<PaginatedResponse<SoundcloudTrack[]>>(url);
+    tracks.push(...data.collection.map(soundcloudTrackToInternal(token)));
+
+    next = data.next_href;
+  } while (!!next);
+
+  return tracks;
 };
 
-export type Token = string;
+type Token = string;
 
-export type Track = {
+interface PaginatedResponse<T> {
+  collection: T;
+  next_href?: string;
+}
+
+interface SoundcloudTrack {
+  id: number;
   title: string;
-  download: string;
+  download_url: string;
+}
+
+const soundcloudTrackToInternal = (token: Token) => (
+  track: SoundcloudTrack
+): Track => {
+  return {
+    title: track.title,
+    download: `${track.download_url}&oauth_token=${token}`,
+  };
 };

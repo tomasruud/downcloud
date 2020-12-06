@@ -2,12 +2,10 @@ import React, { memo, ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
-  className?: string;
-  noMargin?: boolean;
 };
 
-const Paragraph = ({ className, children, noMargin = false }: Props) => (
-  <p className={`${noMargin ? "" : "mb-1"} ${className}`}>{children}</p>
+const Paragraph = ({ children }: Props) => (
+  <p className="mb-3 leading-relaxed">{children}</p>
 );
 
 export default memo(Paragraph);

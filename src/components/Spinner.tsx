@@ -1,12 +1,8 @@
 import React, { memo } from "react";
 
-type Props = {
-  className?: string;
-};
-
-const Spinner = ({ className }: Props) => (
-  <span className={`block relative w-4 h-4 ${className}`}>
-    <span className="block animate-ping absolute bg-orange-500 h-full w-full rounded-full opacity-75" />
+const Spinner = () => (
+  <span className="flex relative h-4 w-4">
+    <span className="animate-ping absolute inline-flex h-full w-full bg-purple-500 rounded-full" />
   </span>
 );
 
