@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "start": "parcel",
-    "build": "parcel build",
+    "build": "parcel build --dist-dir docs",
     "format": "prettier \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --write"
   },
   "devDependencies": {
