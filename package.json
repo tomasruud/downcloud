@@ -12,20 +12,12 @@
     "format": "prettier \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\" --write"
   },
   "devDependencies": {
-    "@types/node": "^17.0.33",
-    "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4",
     "autoprefixer": "^10.4.7",
-    "axios": "^0.27.2",
     "buffer": "^6.0.3",
-    "multi-download": "^4.0.0",
     "parcel": "^2.5.0",
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
     "process": "^0.11.10",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-ga": "^3.3.0",
     "tailwindcss": "^3.0.24"
   },
   "browserslist": [

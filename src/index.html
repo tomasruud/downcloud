@@ -10,10 +10,50 @@
   <meta name="keywords" content="soundcloud,download,tracks,wav,original format,mp3,uncompressed">
 
   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body class="bg-white text-black dark:bg-black dark:text-white">
-  <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="app"></div>
-  <script type="module" src="index.tsx"></script>
+  <div class="container mx-auto max-w-2xl py-6 px-12 mt-6 bg-gray-100 text-black dark:bg-gray-800 dark:text-white md:rounded">
+    <main class="py-6 px-12">
+      <h1 class="text-xl mb-3">Dear Downcloud user</h1>
+      <p>
+        Due to recent changes in Soundcloud APIs, this app is left in a
+        rather broken state. This leaves me with two possible paths
+        regarding the future for this application:
+      </p>
+      <ol class="list-decimal list-inside mt-3">
+        <li class="mt-3 ml-4">
+          Cease any further development and let people use the
+          <em>download track</em> functionality that is already built into
+          the current version of Soundcloud.
+        </li>
+        <li class="mt-3 ml-4">
+          Migrate this application out of the browser, to a command line
+          client for instance, and continue development.
+        </li>
+      </ol>
+      <p class="mt-3">
+        Personally I'm not using this tool myself anymore, but for anyone
+        interested in continuing to use a tool like this, I suggest dropping
+        a comment or reaction over at
+        <a
+          href="https://github.com/tomasruud/downcloud/issues/12"
+          target="_blank"
+          class="font-bold no-underline text-purple-500 cursor-pointer hover:underline"
+          rel="noopener noreferrer"
+        >
+        the ticket I've set up on Github
+        </a>. If there is enough interest, I would like to continue doing some
+        work on this, but it depends on the demand.
+      </p>
+      <p class="mt-3">
+        <em>
+          Cheers,
+          <br />
+          Tomas
+        </em>
+      </p>
+    </main>
+  </div>
 </body>
 </html>

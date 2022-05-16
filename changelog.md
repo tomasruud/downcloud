@@ -7,6 +7,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [5.0.0]
+### Changed
+- Removed all functionalty and replaced with some info regdaring the future.
+
 ## [4.0.1]
 
 ### Fixed
@@ -32,6 +36,6 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 [Unreleased]: https://github.com/tomasruud/downcloud/compare/v4.0.0...HEAD
 
+[5.0.0]: https://github.com/tomasruud/downcloud/compare/v4.0.1...v5.0.0
 [4.0.1]: https://github.com/tomasruud/downcloud/compare/v4.0.0...v4.0.1
-
 [4.0.0]: https://github.com/tomasruud/downcloud/compare/v2.1...v4.0.0
