@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import { Button, Heading, Paragraph } from "components";
+import { memo } from "react";
+import { Button, Heading, Paragraph } from "./components";
 
 type Props = {
   onAuthenticate: () => void;

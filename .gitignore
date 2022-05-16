@@ -1,8 +1,4 @@
-.idea/
-.vscode/
-
 node_modules/
-build/
 npm-debug.log*
-src/index.dist.css
-.eslintcache
+.parcel-cache/
+dist/

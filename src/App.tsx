@@ -1,11 +1,12 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import { ReactElement, StrictMode, useEffect, useState } from "react";
 import ReactGA from "react-ga";
 
-import type { Track } from "types";
-import * as soundcloud from "api/soundcloud";
-import { Link, Paragraph, Spinner } from "components";
+import type { Track } from "./api/soundcloud";
+import * as soundcloud from "./api/soundcloud";
+import { Link, Paragraph, Spinner } from "./components";
 import TracksView from "./TracksView";
 import LoginView from "./LoginView";
+import { version } from "../package.json";
 
 const App = () => {
   useEffect(() => {
@@ -55,48 +56,49 @@ const App = () => {
   }
 
   return (
-    <div className="container mx-auto max-w-2xl">
-      <main className="py-6 px-12">{content}</main>
+    <StrictMode>
+      <div className="container mx-auto max-w-2xl">
+        <main className="py-6 px-12">{content}</main>
 
-      <footer className="py-6 px-12 mt-6 bg-gray-100 md:rounded">
-        <Paragraph>
-          <Link href="https://www.buymeacoffee.com/tomas" external={true}>
-            Buy me a coffee?
-          </Link>
-        </Paragraph>
+        <footer className="py-6 px-12 mt-6 bg-gray-100 text-black dark:bg-gray-800 dark:text-white md:rounded">
+          <Paragraph>
+            <Link href="https://www.buymeacoffee.com/tomas" external={true}>
+              Buy me a coffee?
+            </Link>
+          </Paragraph>
 
-        <Paragraph>
-          <Link href="https://soundcloud.com/autodrums" external={true}>
-            @autodrums
-          </Link>{" "}
-          on Soundcloud
-          <br />
-          <Link href="https://github.com/tomasruud" external={true}>
-            @tomasruud
-          </Link>{" "}
-          on Github
-        </Paragraph>
+          <Paragraph>
+            <Link href="https://soundcloud.com/autodrums" external={true}>
+              @autodrums
+            </Link>{" "}
+            on Soundcloud
+            <br />
+            <Link href="https://github.com/tomasruud" external={true}>
+              @tomasruud
+            </Link>{" "}
+            on Github
+          </Paragraph>
 
-        <Paragraph>
-          <Link
-            href="https://github.com/tomasruud/downcloud/issues"
-            external={true}
-          >
-            Report issues
-          </Link>
-          <br />
-          <Link
-            href="https://github.com/tomasruud/downcloud/tree/master/changelog.md"
-            external={true}
-          >
-            Changelog
-          </Link>
-          <br />
-          Version {process.env.REACT_APP_VERSION}
-        </Paragraph>
-      </footer>
+          <Paragraph>
+            <Link
+              href="https://github.com/tomasruud/downcloud/issues"
+              external={true}
+            >
+              Report issues
+            </Link>
+            <br />
+            <Link
+              href="https://github.com/tomasruud/downcloud/tree/master/changelog.md"
+              external={true}
+            >
+              Changelog
+            </Link>
+            <br />
+            Version {version}
+          </Paragraph>
+        </footer>
 
-      <span className="text-gray-400 text-xs py-6 px-12 block">
+        <span className="text-gray-400 text-xs py-6 px-12 block">
           <Paragraph>
             None of your data will be stored anywhere, everything is done in
             your browser session and destroyed once you exit/refresh the site.
@@ -106,7 +108,8 @@ const App = () => {
             which means that there will be a necessary cookie set for this.
           </Paragraph>
         </span>
-    </div>
+      </div>
+    </StrictMode>
   );
 };
 

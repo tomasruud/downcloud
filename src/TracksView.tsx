@@ -1,8 +1,8 @@
-import React, { memo, useState } from "react";
+import { memo, useState } from "react";
 import multiDownload from "multi-download";
 
-import type { Track } from "types";
-import { Button, Heading, Link, Paragraph } from "components";
+import type { Track } from "./api/soundcloud";
+import { Button, Heading, Link, Paragraph } from "./components";
 
 type Props = {
   tracks: Track[];
@@ -36,7 +36,7 @@ const TracksView = ({ tracks }: Props) => {
         If you're feeling lucky, you can try to{" "}
         <Button
           type="plain"
-          onClick={() => multiDownload(tracks.map((t) => t.download))}
+          onClick={() => multiDownload(tracks.map((t) => ""))}
         >
           download all tracks at once
         </Button>
@@ -56,7 +56,14 @@ const TracksView = ({ tracks }: Props) => {
       <ul className="list-inside list-disc mt-6">
         {sorted.map((t, i) => (
           <li key={i} className="mb-2">
-            <Link href={t.download} external={true}>
+            <Link
+              href="#"
+              external={true}
+              onClick={(e) => {
+                e.preventDefault();
+                t.download()
+              }}
+            >
               {t.title}
             </Link>
           </li>

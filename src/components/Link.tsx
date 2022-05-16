@@ -6,7 +6,7 @@ type Props = {
   children: ReactNode;
 };
 
-const Link = ({ external = false, children, href }: Props) => {
+const Link = ({ external = false, children, href, ...props }: Props) => {
   let target = {};
 
   if (external) {
@@ -21,6 +21,7 @@ const Link = ({ external = false, children, href }: Props) => {
       className="font-bold no-underline text-purple-500 cursor-pointer hover:underline"
       href={href}
       {...target}
+      {...props}
     >
       {children}
     </a>

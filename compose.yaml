@@ -1,0 +1,16 @@
+services:
+  app:
+    image: node:16.15-bullseye
+    entrypoint: npm start
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:1234"
+
+  npm:
+    extends:
+      service: app
+    entrypoint: npm
+    profiles:
+      - standalone

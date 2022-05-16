@@ -1,23 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 
-import "./index.dist.css";
+import App from "./App";
+import "./index.css";
 
-const render = () => {
-    const App = require("./App").default;
-
-    ReactDOM.render(
-        <React.StrictMode>
-            <App/>
-        </React.StrictMode>,
-        document.getElementById("downcloud")
-    );
-};
-
-render();
-
-if (process.env.NODE_ENV === "development") {
-    if (module.hot) {
-        module.hot.accept("./App", render);
-    }
-}
+const root = createRoot(document.getElementById("app"));
+root.render(<App />);

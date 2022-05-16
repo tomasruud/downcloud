@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Track } from "../types";
 
 const apiUrl = "https://api.soundcloud.com";
 
@@ -13,8 +12,6 @@ export const authenticate = async (
       client_id: clientId,
       redirect_uri: redirectUri,
       response_type: "token",
-      scope: "non-expiring",
-      display: "popup",
     });
 
     const popup = window.open(
@@ -64,26 +61,34 @@ export const authenticate = async (
 };
 
 export const tracks = async (token: Token): Promise<Track[]> => {
-  const query = new URLSearchParams({
-    oauth_token: token,
-    linked_partitioning: "1",
-    limit: "200",
-  });
-
   const tracks: Track[] = [];
-  let next: string | undefined;
-  do {
-    let url = `${apiUrl}/me/tracks?${query.toString()}`;
+  let next: string = apiUrl + "/me/tracks";
+  while (!!next) {
+    const { data } = await axios.get<PaginatedResponse<SoundcloudTrack[]>>(
+      next,
+      {
+        headers: { Authorization: "OAuth " + token },
+        params: { linked_partitioning: true, limit: 50 },
+      }
+    );
 
-    if (next && next !== "") {
-      url = `${next}&oauth_token=${token}`;
-    }
+    tracks.push(
+      ...data.collection.map((t) => ({
+        id: t.id,
+        title: t.title,
+        download: () => {
+          const res = axios.get(t.stream_url.replace("stream", "download"), {
+            headers: { Authorization: "OAuth " + token },
+          });
+        },
+      }))
+    );
 
-    const { data } = await axios.get<PaginatedResponse<SoundcloudTrack[]>>(url);
-    tracks.push(...data.collection.map(soundcloudTrackToInternal(token)));
+    console.dir("tracks", tracks);
+    console.log("next", data.next_href);
 
-    next = data.next_href;
-  } while (!!next);
+    next = data.next_href || undefined;
+  }
 
   return tracks;
 };
@@ -99,21 +104,11 @@ interface SoundcloudTrack {
   id: number;
   title: string;
   download_url: string;
+  stream_url: string;
 }
 
-const soundcloudTrackToInternal = (token: Token) => (
-  track: SoundcloudTrack
-): Track => {
-  let dl = track.download_url;
-
-  if (!dl.includes("?")) {
-    dl = `${dl}?oauth_token=${token}`;
-  } else {
-    dl = `${dl}&oauth_token=${token}`;
-  }
-
-  return {
-    title: track.title,
-    download: dl,
-  };
-};
+export interface Track {
+  id: number;
+  title: string;
+  download: () => void;
+}
